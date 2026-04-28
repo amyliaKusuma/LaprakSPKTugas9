@@ -1,8 +1,8 @@
 <?php
 
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');        // Ganti dengan username MySQL kamu
-define('DB_PASS', '');            // Ganti dengan password MySQL kamu
+define('DB_USER', 'root');       
+define('DB_PASS', '');            
 define('DB_NAME', 'spk_studentexchange');
 define('DB_CHARSET', 'utf8mb4');
 

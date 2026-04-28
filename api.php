@@ -4,6 +4,7 @@ header('Access-Control-Allow-Origin: *');
 
 require_once 'config.php';
 require_once 'saw.php';
+require_once 'evaluasi.php';
 
 $saw    = new SAW();
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
@@ -11,24 +12,20 @@ $action = $_GET['action'] ?? $_POST['action'] ?? '';
 try {
     switch ($action) {
 
-        // ---- Hitung SAW ----
         case 'hitung_saw':
             $hasil = $saw->jalankan();
             echo json_encode(['success' => true, 'data' => $hasil]);
             break;
 
-        // ---- Ambil Hasil ----
         case 'get_hasil':
             $hasil = $saw->getHasil();
             echo json_encode(['success' => true, 'data' => $hasil]);
             break;
 
-        // ---- Daftar Siswa ----
         case 'get_siswa':
             echo json_encode(['success' => true, 'data' => $saw->getSiswa()]);
             break;
 
-        // ---- Tambah Siswa ----
         case 'tambah_siswa':
             $data = [
                 'nisn'  => trim($_POST['nisn'] ?? ''),
@@ -44,21 +41,18 @@ try {
             echo json_encode(['success' => $ok, 'message' => $ok ? 'Siswa berhasil ditambahkan' : 'Gagal menambahkan siswa']);
             break;
 
-        // ---- Hapus Siswa ----
         case 'hapus_siswa':
             $id = (int)($_POST['id'] ?? 0);
             $ok = $saw->hapusSiswa($id);
             echo json_encode(['success' => $ok, 'message' => $ok ? 'Siswa dihapus' : 'Gagal menghapus']);
             break;
 
-        // ---- Nilai Siswa ----
         case 'get_nilai':
             $sid  = (int)($_GET['siswa_id'] ?? 0);
             $data = $saw->getNilaiSiswa($sid);
             echo json_encode(['success' => true, 'data' => $data]);
             break;
 
-        // ---- Simpan Nilai ----
         case 'simpan_nilai':
             $sid    = (int)($_POST['siswa_id'] ?? 0);
             $nilais = $_POST['nilai'] ?? [];
@@ -70,12 +64,10 @@ try {
             echo json_encode(['success' => $ok, 'message' => $ok ? 'Nilai berhasil disimpan' : 'Gagal menyimpan nilai']);
             break;
 
-        // ---- Kriteria ----
         case 'get_kriteria':
             echo json_encode(['success' => true, 'data' => $saw->getKriteria()]);
             break;
 
-        // ---- Update Bobot ----
         case 'update_bobot':
             $bobots = $_POST['bobot'] ?? [];
             // Validasi: total harus = 1
@@ -88,7 +80,11 @@ try {
             echo json_encode(['success' => $ok, 'message' => $ok ? 'Bobot berhasil diperbarui' : 'Gagal memperbarui bobot']);
             break;
 
-        // ---- Statistik ----
+        case 'evaluasi':
+            $evaluasi = new EvaluasiSPK();
+            $hasil    = $evaluasi->jalankan();
+            echo json_encode(['success' => !($hasil['error'] ?? false), 'data' => $hasil]);
+            break;
         case 'get_stats':
             echo json_encode(['success' => true, 'data' => $saw->getStats()]);
             break;

@@ -421,6 +421,9 @@ input[type=range]::-webkit-slider-thumb{
     <div class="nav-item" data-page="hasil" onclick="showPage('hasil',this)">
       <span class="icon">🏆</span> Hasil Peringkat
     </div>
+    <div class="nav-item" data-page="evaluasi" onclick="showPage('evaluasi',this)">
+      <span class="icon">🔬</span> Evaluasi SPK
+    </div>
     <div class="nav-section">Data Master</div>
     <div class="nav-item" data-page="siswa" onclick="showPage('siswa',this)">
       <span class="icon">👥</span> Data Siswa
@@ -577,7 +580,6 @@ input[type=range]::-webkit-slider-thumb{
     </div>
   </div>
 
-  <!-- ======================== HASIL ======================== -->
   <div class="page" id="page-hasil">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
       <div>
@@ -624,7 +626,6 @@ input[type=range]::-webkit-slider-thumb{
     </div>
   </div>
 
-  <!-- ======================== SISWA ======================== -->
   <div class="page" id="page-siswa">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
       <div>
@@ -657,7 +658,6 @@ input[type=range]::-webkit-slider-thumb{
     </div>
   </div>
 
-  <!-- ======================== KRITERIA ======================== -->
   <div class="page" id="page-kriteria">
     <div style="margin-bottom:20px">
       <h1 style="font-size:18px;font-weight:700">⚖️ Kriteria & Bobot SAW</h1>
@@ -696,11 +696,106 @@ input[type=range]::-webkit-slider-thumb{
       </div>
     </div>
   </div>
+
+  <div class="page" id="page-evaluasi">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <div>
+        <h1 style="font-size:18px;font-weight:700">🔬 Evaluasi & Peningkatan Kinerja SPK</h1>
+        <p style="font-size:13px;color:var(--text3);margin-top:4px">Mengukur efektivitas SPK menggunakan Spearman Correlation, Akurasi Top-K, dan MAE</p>
+      </div>
+      <button class="btn btn-primary" onclick="jalankanEvaluasi()">▶️ Jalankan Evaluasi</button>
+    </div>
+
+    <div class="notice notice-info" style="margin-bottom:20px">
+      <span>ℹ️</span>
+      <div><strong>Ground Truth</strong> ditetapkan berdasarkan penilaian holistik pakar/tim seleksi terhadap 36 siswa SMAN 3 Malang. Evaluasi membandingkan urutan SPK dengan urutan pakar menggunakan beberapa metrik statistik.</div>
+    </div>
+
+    <div id="evalEmpty" class="section-card">
+      <div class="section-body">
+        <div class="empty">
+          <div class="empty-icon">🔬</div>
+          <div class="empty-title">Siap Menjalankan Evaluasi</div>
+          <div class="empty-sub">Pastikan perhitungan SAW sudah dijalankan, lalu klik tombol "Jalankan Evaluasi" di atas.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="evalContent" style="display:none">
+
+      <!-- Kartu Metrik Utama -->
+      <div class="stats-grid" id="evalStatGrid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))"></div>
+
+      <!-- Spearman Detail -->
+      <div class="section-card">
+        <div class="section-head">
+          <div>
+            <h2>📐 Spearman Rank Correlation</h2>
+            <p>Mengukur kesesuaian urutan peringkat SPK vs. pakar · Rumus: rs = 1 − (6·Σd²) / (n·(n²−1))</p>
+          </div>
+          <div id="spearmanBadge"></div>
+        </div>
+        <div class="section-body">
+          <div id="spearmanFormula" style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px;font-family:var(--mono);font-size:13px;margin-bottom:16px;line-height:2"></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank SPK</th>
+                  <th>Nama Siswa</th>
+                  <th class="td-center">Rank SPK</th>
+                  <th class="td-center">Rank Pakar</th>
+                  <th class="td-center">d (selisih)</th>
+                  <th class="td-center">d²</th>
+                  <th>Skor SAW</th>
+                </tr>
+              </thead>
+              <tbody id="tblSpearman"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-head">
+          <div><h2>🎯 Akurasi Top-K</h2><p>Perbandingan kandidat terpilih SPK vs. kandidat terpilih pakar</p></div>
+        </div>
+        <div class="section-body">
+          <div id="akurasiGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:20px"></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Metrik</th><th>SPK Pilih</th><th>Pakar Pilih</th><th class="td-center">Cocok</th><th class="td-center">Akurasi</th></tr>
+              </thead>
+              <tbody id="tblAkurasi"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-head">
+          <div><h2>⚗️ Analisis Sensitivitas Bobot</h2><p>Uji dampak perubahan bobot kriteria terhadap Top 3 kandidat terpilih</p></div>
+        </div>
+        <div class="section-body">
+          <div id="sensitivitasGrid"></div>
+        </div>
+      </div>
+
+      <!-- Rekomendasi -->
+      <div class="section-card">
+        <div class="section-head">
+          <div><h2>💡 Rekomendasi Perbaikan SPK</h2><p>Analisis otomatis berdasarkan hasil metrik evaluasi</p></div>
+        </div>
+        <div class="section-body" id="rekomendasiBody"></div>
+      </div>
+
+    </div>
+  </div>
+
+
 </main>
 
-<!-- ============================================================
-     MODAL: Tambah Siswa
-     ============================================================ -->
 <div class="modal-overlay" id="modalSiswa">
   <div class="modal">
     <div class="modal-head">
@@ -737,9 +832,6 @@ input[type=range]::-webkit-slider-thumb{
   </div>
 </div>
 
-<!-- ============================================================
-     MODAL: Input Nilai
-     ============================================================ -->
 <div class="modal-overlay" id="modalNilai">
   <div class="modal modal-wide">
     <div class="modal-head">
@@ -795,7 +887,8 @@ function showPage(pageId, el) {
     perhitungan: '🧮 Hitung SAW',
     hasil: '🏆 Hasil Peringkat',
     siswa: '👥 Data Siswa',
-    kriteria: '⚖️ Kriteria & Bobot'
+    kriteria: '⚖️ Kriteria & Bobot',
+    evaluasi: '🔬 Evaluasi SPK'
   };
   document.getElementById('topbarTitle').textContent = titles[pageId] || '';
 
@@ -803,6 +896,7 @@ function showPage(pageId, el) {
   if (pageId === 'kriteria') loadKriteriaPage();
   if (pageId === 'hasil') loadHasil();
   if (pageId === 'dashboard') { loadStats(); loadKriteriaData(); }
+  if (pageId === 'evaluasi') { /* ready, user clicks run */ }
 }
 
 // ============================================================
@@ -1137,9 +1231,6 @@ async function simpanNilai() {
   if (res.success) closeModal('modalNilai');
 }
 
-// ============================================================
-// KRITERIA
-// ============================================================
 async function loadKriteriaPage() {
   const res = await api({ action: 'get_kriteria' });
   if (!res.success) return;
@@ -1232,9 +1323,6 @@ async function simpanBobot() {
   if (res.success) { loadKriteriaData(); loadKriteriaPage(); }
 }
 
-// ============================================================
-// MODAL HELPERS
-// ============================================================
 function openModal(id) {
   document.getElementById(id)?.classList.add('open');
 }
@@ -1247,9 +1335,6 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
   });
 });
 
-// ============================================================
-// LOADING
-// ============================================================
 function showLoading(txt = 'Memproses...') {
   document.getElementById('loadingTxt').textContent = txt;
   document.getElementById('loadingOverlay').classList.add('show');
@@ -1258,9 +1343,6 @@ function hideLoading() {
   document.getElementById('loadingOverlay').classList.remove('show');
 }
 
-// ============================================================
-// TOAST
-// ============================================================
 function toast(msg, type = 'info') {
   const icons = { success: '✅', error: '❌', info: 'ℹ️' };
   const el = document.createElement('div');
@@ -1269,6 +1351,187 @@ function toast(msg, type = 'info') {
   document.getElementById('toast-container').appendChild(el);
   setTimeout(() => el.remove(), 4000);
 }
+
+async function jalankanEvaluasi() {
+  showLoading('Menjalankan evaluasi SPK...');
+  try {
+    const res = await fetch('api.php?action=evaluasi');
+    const data = await res.json();
+    hideLoading();
+
+    if (!data.success) {
+      toast(data.data?.message || 'Evaluasi gagal. Jalankan SAW terlebih dahulu.', 'error');
+      return;
+    }
+
+    toast('Evaluasi selesai!', 'success');
+    document.getElementById('evalEmpty').style.display  = 'none';
+    document.getElementById('evalContent').style.display = 'block';
+    renderEvaluasi(data.data);
+  } catch(e) {
+    hideLoading();
+    toast('Error: ' + e.message, 'error');
+  }
+}
+
+function renderEvaluasi(d) {
+  const sp  = d.spearman;
+  const ak  = d.akurasi;
+  const mae = d.mae;
+
+  const rsVal = parseFloat(sp.rs);
+  let rsLevel, rsColor, rsDesc;
+  if (rsVal >= 0.90)      { rsLevel='Sangat Baik'; rsColor='var(--green)';  rsDesc='SPK sangat konsisten dengan penilaian pakar'; }
+  else if (rsVal >= 0.70) { rsLevel='Cukup Baik';  rsColor='var(--gold)';   rsDesc='Konsistensi cukup, bobot dapat dikaji ulang'; }
+  else                    { rsLevel='Rendah';       rsColor='var(--red)';    rsDesc='Penyimpangan signifikan, kalibrasi diperlukan'; }
+
+  let maeLevel, maeColor;
+  if (mae <= 1.5)      { maeLevel='Sangat Presisi'; maeColor='var(--green)'; }
+  else if (mae <= 3.0) { maeLevel='Cukup';          maeColor='var(--gold)'; }
+  else                 { maeLevel='Perlu Kalibrasi'; maeColor='var(--red)'; }
+
+  document.getElementById('evalStatGrid').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-icon" style="background:rgba(16,185,129,.15)">📐</div>
+      <div>
+        <div class="stat-val" style="color:${rsColor}">${rsVal.toFixed(4)}</div>
+        <div class="stat-lbl">Spearman rs</div>
+        <div class="stat-sub">${rsLevel}</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:rgba(59,130,246,.15)">🎯</div>
+      <div>
+        <div class="stat-val" style="color:${ak.top1.pct==100?'var(--green)':'var(--red)'}">${ak.top1.pct}%</div>
+        <div class="stat-lbl">Akurasi Top-1</div>
+        <div class="stat-sub">Kandidat Terbaik</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:rgba(245,158,11,.15)">⭐</div>
+      <div>
+        <div class="stat-val" style="color:${ak.top5.pct>=80?'var(--green)':'var(--gold)'}">${ak.top5.pct}%</div>
+        <div class="stat-lbl">Akurasi Top-5</div>
+        <div class="stat-sub">${ak.top5.cocok} / 5 cocok</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:rgba(139,92,246,.15)">📏</div>
+      <div>
+        <div class="stat-val" style="color:${maeColor}">${mae}</div>
+        <div class="stat-lbl">MAE Peringkat</div>
+        <div class="stat-sub">${maeLevel}</div>
+      </div>
+    </div>`;
+
+  document.getElementById('spearmanFormula').innerHTML =
+    `<span style="color:var(--text3)">Rumus :</span> rs = 1 − (6 × Σd²) / (n × (n²−1))<br>` +
+    `<span style="color:var(--text3)">Substitusi :</span> rs = 1 − (6 × <strong style="color:var(--accent)">${sp.sum_d2}</strong>) / (<strong style="color:var(--accent)">${sp.n}</strong> × (${sp.n}²−1))<br>` +
+    `<span style="color:var(--text3)">Hasil :</span> rs = 1 − ${(6*sp.sum_d2)} / ${sp.n*(sp.n*sp.n-1)} = <strong style="color:${rsColor};font-size:15px">${rsVal.toFixed(4)}</strong> → ${rsLevel} · ${rsDesc}`;
+
+  document.getElementById('spearmanBadge').innerHTML =
+    `<span class="badge" style="background:rgba(16,185,129,.15);color:${rsColor};border:1px solid ${rsColor};font-size:13px;padding:4px 12px">${rsLevel} (${rsVal.toFixed(4)})</span>`;
+
+  const tbody = document.getElementById('tblSpearman');
+  tbody.innerHTML = sp.details.map(r => {
+    const absD = Math.abs(r.d);
+    const dColor = absD === 0 ? 'var(--green)' : absD <= 2 ? 'var(--gold)' : 'var(--red)';
+    const rClass = r.rank_spk===1?'rank-1':r.rank_spk===2?'rank-2':r.rank_spk===3?'rank-3':'rank-n';
+    return `<tr>
+      <td><span class="rank ${rClass}">${r.rank_spk}</span></td>
+      <td style="font-weight:600">${r.nama}</td>
+      <td class="td-mono td-center">${r.rank_spk}</td>
+      <td class="td-mono td-center">${r.rank_pakar}</td>
+      <td class="td-mono td-center" style="color:${dColor};font-weight:700">${r.d > 0 ? '+'+r.d : r.d}</td>
+      <td class="td-mono td-center" style="color:${r.d2===0?'var(--green)':'var(--text)'}">${r.d2}</td>
+      <td>
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-bar-fill" style="width:${(r.skor_saw*100).toFixed(1)}%;background:var(--accent)"></div></div>
+          <span class="score-num">${parseFloat(r.skor_saw).toFixed(4)}</span>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+
+  const akCards = [
+    { k:'top1',  label:'Top-1', icon:'🥇' },
+    { k:'top3',  label:'Top-3', icon:'🏅' },
+    { k:'top5',  label:'Top-5', icon:'⭐' },
+    { k:'top10', label:'Top-10',icon:'📋' },
+  ];
+  document.getElementById('akurasiGrid').innerHTML = akCards.map(c => {
+    const item = ak[c.k];
+    const pct  = parseFloat(item.pct);
+    const col  = pct>=80?'var(--green)':pct>=60?'var(--gold)':'var(--red)';
+    return `<div class="stat-card" style="flex-direction:column;align-items:flex-start">
+      <div style="font-size:22px;margin-bottom:8px">${c.icon}</div>
+      <div style="font-size:22px;font-weight:700;font-family:var(--mono);color:${col};margin-bottom:4px">${pct}%</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:2px">Akurasi ${c.label}</div>
+      <div style="font-size:11px;color:var(--text3)">${item.cocok} dari ${item.total} kandidat cocok</div>
+      <div class="score-bar" style="width:100%;margin-top:10px">
+        <div class="score-bar-fill" style="width:${pct}%;background:${col}"></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('tblAkurasi').innerHTML = akCards.map(c => {
+    const item = ak[c.k];
+    const pct  = parseFloat(item.pct);
+    const col  = pct>=80?'var(--green)':pct>=60?'var(--gold)':'var(--red)';
+    const spkList  = Array.isArray(item.spk)  ? item.spk.join(', ')  : item.spk;
+    const pkrList  = Array.isArray(item.pakar) ? item.pakar.join(', '): item.pakar;
+    return `<tr>
+      <td style="font-weight:600">${c.icon} ${c.label}</td>
+      <td style="font-size:12px;color:var(--text2)">${spkList}</td>
+      <td style="font-size:12px;color:var(--text3)">${pkrList}</td>
+      <td class="td-mono td-center" style="color:var(--green)">${item.cocok}/${item.total}</td>
+      <td class="td-mono td-center" style="color:${col};font-weight:700">${pct}%</td>
+    </tr>`;
+  }).join('');
+
+  const sensCols = ['C1 Rapor','C2 TOEFL','C3 Wawancara','C4 Mot.Letter','C5 Org'];
+  document.getElementById('sensitivitasGrid').innerHTML =
+    '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px">' +
+    d.sensitivitas.map((s, si) => {
+      const bobotPcts = s.bobots.map((b,i) => `<span style="font-size:10px;background:var(--bg2);padding:2px 6px;border-radius:4px;border:1px solid var(--border)">${sensCols[i].split(' ')[0]}=${Math.round(b*100)}%</span>`).join(' ');
+      const top3html  = s.top3.map((t,i)=>`
+        <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(30,45,69,.4)">
+          <span style="font-size:14px">${['🥇','🥈','🥉'][i]}</span>
+          <span style="font-size:12px;font-weight:600;flex:1">${t.nama}</span>
+          <span style="font-family:var(--mono);font-size:11px;color:var(--accent)">${t.skor.toFixed(4)}</span>
+        </div>`).join('');
+      const isCurrent = si === 0;
+      return `<div style="background:var(--card);border:1px solid ${isCurrent?'var(--accent)':'var(--border)'};border-radius:10px;padding:14px;${isCurrent?'box-shadow:0 0 0 1px var(--accent)':''}">
+        <div style="font-size:11px;font-weight:700;color:${isCurrent?'var(--accent)':'var(--text3)'};margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em">${isCurrent?'✅ Bobot Aktif':'Skenario '+(si)}</div>
+        <div style="font-size:12px;font-weight:600;margin-bottom:8px;line-height:1.4">${s.label.split('(')[0].trim()}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px">${bobotPcts}</div>
+        <div style="font-size:10px;font-weight:700;color:var(--text3);letter-spacing:.05em;margin-bottom:6px">TOP 3 KANDIDAT</div>
+        ${top3html}
+      </div>`;
+    }).join('') + '</div>';
+
+  const lvlMap = {
+    baik:   { bg:'rgba(16,185,129,.08)',  border:'rgba(16,185,129,.3)',  tx:'var(--green)' },
+    sedang: { bg:'rgba(245,158,11,.08)',  border:'rgba(245,158,11,.3)',  tx:'var(--gold)' },
+    buruk:  { bg:'rgba(239,68,68,.08)',   border:'rgba(239,68,68,.3)',   tx:'var(--red)' },
+    info:   { bg:'rgba(59,130,246,.08)',  border:'rgba(59,130,246,.3)',  tx:'var(--accent)' },
+  };
+  document.getElementById('rekomendasiBody').innerHTML =
+    '<div style="display:flex;flex-direction:column;gap:12px">' +
+    d.rekomendasi.map(r => {
+      const s = lvlMap[r.level] || lvlMap.info;
+      return `<div style="background:${s.bg};border:1px solid ${s.border};border-radius:10px;padding:16px;display:flex;gap:14px">
+        <div style="font-size:22px;flex-shrink:0">${r.icon}</div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:${s.tx};margin-bottom:5px">${r.judul}</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.6">${r.isi}</div>
+        </div>
+      </div>`;
+    }).join('') + '</div>';
+}
+
+
+// ============================================================
 </script>
 </body>
 </html>

@@ -1,16 +1,8 @@
--- ============================================================
--- DATABASE: SPK SELEKSI STUDENT EXCHANGE - SMAN 3 MALANG
--- Metode: SAW (Simple Additive Weighting)
--- ============================================================
-
 CREATE DATABASE IF NOT EXISTS spk_studentexchange 
   CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 USE spk_studentexchange;
 
--- ============================================================
--- TABEL: pengguna
--- ============================================================
 CREATE TABLE IF NOT EXISTS pengguna (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nama VARCHAR(100) NOT NULL,
@@ -20,9 +12,6 @@ CREATE TABLE IF NOT EXISTS pengguna (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- ============================================================
--- TABEL: kriteria
--- ============================================================
 CREATE TABLE IF NOT EXISTS kriteria (
   id INT AUTO_INCREMENT PRIMARY KEY,
   kode VARCHAR(5) NOT NULL UNIQUE,
@@ -33,9 +22,6 @@ CREATE TABLE IF NOT EXISTS kriteria (
   urutan INT NOT NULL DEFAULT 0
 ) ENGINE=InnoDB;
 
--- ============================================================
--- TABEL: siswa
--- ============================================================
 CREATE TABLE IF NOT EXISTS siswa (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nisn VARCHAR(20),
@@ -45,9 +31,6 @@ CREATE TABLE IF NOT EXISTS siswa (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- ============================================================
--- TABEL: nilai_siswa
--- ============================================================
 CREATE TABLE IF NOT EXISTS nilai_siswa (
   id INT AUTO_INCREMENT PRIMARY KEY,
   siswa_id INT NOT NULL,
@@ -59,9 +42,6 @@ CREATE TABLE IF NOT EXISTS nilai_siswa (
   UNIQUE KEY uq_siswa_kriteria (siswa_id, kriteria_id)
 ) ENGINE=InnoDB;
 
--- ============================================================
--- TABEL: hasil_seleksi
--- ============================================================
 CREATE TABLE IF NOT EXISTS hasil_seleksi (
   id INT AUTO_INCREMENT PRIMARY KEY,
   siswa_id INT NOT NULL,
@@ -72,16 +52,10 @@ CREATE TABLE IF NOT EXISTS hasil_seleksi (
   FOREIGN KEY (siswa_id) REFERENCES siswa(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- ============================================================
--- DATA AWAL: pengguna (password: admin123)
--- ============================================================
 INSERT INTO pengguna (nama, email, password, role) VALUES
 ('Administrator', 'admin@spk.sch.id', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin'),
 ('Panitia Seleksi', 'panitia@spk.sch.id', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'panitia');
 
--- ============================================================
--- DATA AWAL: kriteria SAW
--- ============================================================
 INSERT INTO kriteria (kode, nama_kriteria, jenis, bobot, keterangan, urutan) VALUES
 ('C1', 'Nilai Rata-Rata Rapor',       'benefit', 0.30, 'Nilai rata-rata akademik siswa dari rapor semester terakhir', 1),
 ('C2', 'Skor TOEFL/IELTS/TOEIC',      'benefit', 0.25, 'Skor kemampuan bahasa Inggris yang telah distandarisasi', 2),
@@ -89,9 +63,6 @@ INSERT INTO kriteria (kode, nama_kriteria, jenis, bobot, keterangan, urutan) VAL
 ('C4', 'Penilaian Motivation Letter', 'benefit', 0.15, 'Skor penilaian atas surat motivasi yang ditulis siswa', 4),
 ('C5', 'Keaktifan Organisasi/Prestasi','benefit', 0.10, 'Skor keaktifan organisasi dan pencapaian prestasi siswa', 5);
 
--- ============================================================
--- DATA AWAL: 36 siswa SMAN 3 Malang
--- ============================================================
 INSERT INTO siswa (nisn, nama, kelas, jenis_kelamin) VALUES
 ('001', 'Alifa Fitriana Parminasari',           'XII IPA 1', 'P'),
 ('002', 'Aluna Gusti Ayu Kumala',               'XII IPA 1', 'P'),
@@ -130,10 +101,6 @@ INSERT INTO siswa (nisn, nama, kelas, jenis_kelamin) VALUES
 ('035', 'Yuniar Rosa Salsabila',                'XII IPA 1', 'P'),
 ('036', 'Zahra Azizah Latif',                   'XII IPA 3', 'P');
 
--- ============================================================
--- DATA AWAL: nilai_siswa (siswa_id, kriteria_id, nilai)
--- kriteria: 1=Rapor, 2=TOEFL, 3=Wawancara, 4=MotLetter, 5=Org
--- ============================================================
 INSERT INTO nilai_siswa (siswa_id, kriteria_id, nilai) VALUES
 -- Alifa Fitriana Parminasari
 (1,1,88.5),(1,2,520),(1,3,82),(1,4,85),(1,5,80),
