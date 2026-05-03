@@ -6,6 +6,9 @@
 <title>SPK Student Exchange – SMAN 3 Malang</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ============================================================
+   RESET & VARIABLES
+   ============================================================ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
@@ -40,6 +43,9 @@ body{
   overflow-x:hidden;
 }
 
+/* ============================================================
+   GRID NOISE BACKGROUND
+   ============================================================ */
 body::before{
   content:'';
   position:fixed;inset:0;
@@ -49,6 +55,9 @@ body::before{
   pointer-events:none;z-index:0;
 }
 
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
 .sidebar{
   position:fixed;left:0;top:0;bottom:0;width:240px;
   background:var(--bg2);
@@ -91,6 +100,9 @@ body::before{
   line-height:1.6;
 }
 
+/* ============================================================
+   MAIN
+   ============================================================ */
 .main{
   margin-left:240px;
   min-height:100vh;
@@ -127,6 +139,9 @@ body::before{
 .page{padding:28px 32px;display:none}
 .page.active{display:block}
 
+/* ============================================================
+   STAT CARDS
+   ============================================================ */
 .stats-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
@@ -153,6 +168,9 @@ body::before{
 .stat-lbl{font-size:12px;color:var(--text2)}
 .stat-sub{font-size:11px;color:var(--text3);margin-top:2px;font-family:var(--mono)}
 
+/* ============================================================
+   SECTION CARD
+   ============================================================ */
 .section-card{
   background:var(--card);border:1px solid var(--border);
   border-radius:var(--radius);margin-bottom:20px;
@@ -166,6 +184,9 @@ body::before{
 .section-head p{font-size:12px;color:var(--text3);margin-top:2px}
 .section-body{padding:20px}
 
+/* ============================================================
+   TABLE
+   ============================================================ */
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:13px}
 thead tr{background:rgba(30,45,69,.8)}
@@ -184,6 +205,7 @@ tr:hover td{background:rgba(59,130,246,.04)}
 .td-mono{font-family:var(--mono);font-size:12.5px}
 .td-center{text-align:center}
 
+/* Rank badge */
 .rank{
   display:inline-flex;align-items:center;justify-content:center;
   width:28px;height:28px;border-radius:50%;
@@ -194,11 +216,13 @@ tr:hover td{background:rgba(59,130,246,.04)}
 .rank-3{background:rgba(180,83,9,.15);color:#cd7c3a;border:1px solid rgba(180,83,9,.3)}
 .rank-n{background:rgba(30,45,69,.8);color:var(--text3);border:1px solid var(--border)}
 
+/* Score bar */
 .score-bar-wrap{display:flex;align-items:center;gap:10px}
 .score-bar{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
 .score-bar-fill{height:100%;border-radius:3px;transition:width .5s ease}
 .score-num{font-family:var(--mono);font-size:12px;white-space:nowrap;min-width:50px;text-align:right}
 
+/* Bobot chip */
 .bobot-chip{
   display:inline-block;padding:2px 8px;border-radius:20px;
   font-size:11px;font-weight:600;font-family:var(--mono);
@@ -206,6 +230,9 @@ tr:hover td{background:rgba(59,130,246,.04)}
   border:1px solid rgba(59,130,246,.3);
 }
 
+/* ============================================================
+   BADGE / TAG
+   ============================================================ */
 .badge{
   display:inline-block;padding:2px 8px;border-radius:20px;
   font-size:11px;font-weight:600;
@@ -214,6 +241,9 @@ tr:hover td{background:rgba(59,130,246,.04)}
 .badge-red{background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.3)}
 .badge-blue{background:rgba(59,130,246,.15);color:var(--accent);border:1px solid rgba(59,130,246,.3)}
 
+/* ============================================================
+   FORM ELEMENTS
+   ============================================================ */
 .form-group{margin-bottom:16px}
 .form-group label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px}
 .form-control{
@@ -229,6 +259,9 @@ select.form-control{cursor:pointer}
 .form-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
 .form-hint{font-size:11px;color:var(--text3);margin-top:4px}
 
+/* ============================================================
+   MODAL
+   ============================================================ */
 .modal-overlay{
   position:fixed;inset:0;background:rgba(0,0,0,.7);
   backdrop-filter:blur(6px);
@@ -262,6 +295,9 @@ select.form-control{cursor:pointer}
   display:flex;align-items:center;justify-content:flex-end;gap:10px;
 }
 
+/* ============================================================
+   NOTICE / ALERT
+   ============================================================ */
 .notice{
   padding:12px 16px;border-radius:8px;font-size:13px;
   display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;
@@ -270,6 +306,9 @@ select.form-control{cursor:pointer}
 .notice-success{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);color:#6ee7b7}
 .notice-warn{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:#fcd34d}
 
+/* ============================================================
+   TOP 3 PODIUM
+   ============================================================ */
 .podium{
   display:flex;align-items:flex-end;justify-content:center;
   gap:12px;padding:16px 0 24px;margin-bottom:8px;
@@ -306,6 +345,9 @@ select.form-control{cursor:pointer}
 .podium-bar.pos-2{background:rgba(148,163,184,.15);color:var(--silver);height:40px}
 .podium-bar.pos-3{background:rgba(180,83,9,.15);color:#cd7c3a;height:28px}
 
+/* ============================================================
+   NORMALISASI DETAIL TABLE
+   ============================================================ */
 .detail-grid{
   display:grid;grid-template-columns:repeat(5,1fr);gap:8px;
   margin-top:12px;
@@ -318,6 +360,9 @@ select.form-control{cursor:pointer}
 .detail-cell-raw{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
 .detail-cell-norm{font-size:11px;color:var(--accent);font-family:var(--mono)}
 
+/* ============================================================
+   BOBOT SLIDER
+   ============================================================ */
 .bobot-row{
   display:grid;grid-template-columns:120px 1fr 70px 60px;
   align-items:center;gap:12px;padding:12px 0;
@@ -349,6 +394,9 @@ input[type=range]::-webkit-slider-thumb{
 .bobot-total.ok .val{color:var(--green)}
 .bobot-total.err .val{color:var(--red)}
 
+/* ============================================================
+   LOADING / SPINNER
+   ============================================================ */
 .spinner{
   display:inline-block;width:18px;height:18px;
   border:2px solid rgba(59,130,246,.3);border-top-color:var(--accent);
@@ -364,6 +412,9 @@ input[type=range]::-webkit-slider-thumb{
 .loading-overlay.show{display:flex}
 .loading-txt{font-size:14px;color:var(--text2);font-family:var(--mono)}
 
+/* ============================================================
+   TOAST
+   ============================================================ */
 #toast-container{
   position:fixed;bottom:24px;right:24px;z-index:3000;
   display:flex;flex-direction:column;gap:8px;
@@ -380,6 +431,9 @@ input[type=range]::-webkit-slider-thumb{
 .toast-error{background:#450a0a;border:1px solid rgba(239,68,68,.4);color:#fca5a5}
 .toast-info{background:#1e3a5f;border:1px solid rgba(59,130,246,.4);color:#93c5fd}
 
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
 .empty{
   padding:48px 20px;text-align:center;
 }
@@ -387,6 +441,9 @@ input[type=range]::-webkit-slider-thumb{
 .empty-title{font-size:15px;font-weight:600;margin-bottom:6px}
 .empty-sub{font-size:13px;color:var(--text3)}
 
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media(max-width:768px){
   .sidebar{width:200px}
   .main{margin-left:200px}
@@ -398,13 +455,22 @@ input[type=range]::-webkit-slider-thumb{
 </head>
 <body>
 
+<!-- ============================================================
+     LOADING OVERLAY
+     ============================================================ -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner" style="width:36px;height:36px;border-width:3px"></div>
   <div class="loading-txt" id="loadingTxt">Memproses perhitungan SAW...</div>
 </div>
 
+<!-- ============================================================
+     TOAST CONTAINER
+     ============================================================ -->
 <div id="toast-container"></div>
 
+<!-- ============================================================
+     SIDEBAR
+     ============================================================ -->
 <aside class="sidebar">
   <div class="sidebar-logo">
     <div class="app-title">⚡ SPK Seleksi</div>
@@ -420,6 +486,9 @@ input[type=range]::-webkit-slider-thumb{
     </div>
     <div class="nav-item" data-page="hasil" onclick="showPage('hasil',this)">
       <span class="icon">🏆</span> Hasil Peringkat
+    </div>
+    <div class="nav-item" data-page="ml" onclick="showPage('ml',this)">
+      <span class="icon">🤖</span> Machine Learning
     </div>
     <div class="nav-item" data-page="evaluasi" onclick="showPage('evaluasi',this)">
       <span class="icon">🔬</span> Evaluasi SPK
@@ -439,6 +508,9 @@ input[type=range]::-webkit-slider-thumb{
   </div>
 </aside>
 
+<!-- ============================================================
+     MAIN
+     ============================================================ -->
 <main class="main">
   <div class="topbar">
     <div class="topbar-title" id="topbarTitle">📊 Dashboard</div>
@@ -449,6 +521,7 @@ input[type=range]::-webkit-slider-thumb{
     </div>
   </div>
 
+  <!-- ======================== DASHBOARD ======================== -->
   <div class="page active" id="page-dashboard">
     <div class="stats-grid" id="statsGrid">
       <div class="stat-card">
@@ -485,6 +558,7 @@ input[type=range]::-webkit-slider-thumb{
       </div>
     </div>
 
+    <!-- Podium -->
     <div class="section-card" id="podiumCard" style="display:none">
       <div class="section-head">
         <div>
@@ -497,6 +571,7 @@ input[type=range]::-webkit-slider-thumb{
       </div>
     </div>
 
+    <!-- Informasi Metode -->
     <div class="section-card">
       <div class="section-head"><div><h2>📚 Metode SAW – Simple Additive Weighting</h2></div></div>
       <div class="section-body">
@@ -530,6 +605,7 @@ input[type=range]::-webkit-slider-thumb{
     </div>
   </div>
 
+  <!-- ======================== PERHITUNGAN ======================== -->
   <div class="page" id="page-perhitungan">
     <div class="section-card">
       <div class="section-head">
@@ -551,6 +627,7 @@ input[type=range]::-webkit-slider-thumb{
       </div>
     </div>
 
+    <!-- Hasil perhitungan langsung tampil di sini -->
     <div id="hasilPerhitungan" style="display:none">
       <div class="section-card">
         <div class="section-head">
@@ -580,6 +657,7 @@ input[type=range]::-webkit-slider-thumb{
     </div>
   </div>
 
+  <!-- ======================== HASIL ======================== -->
   <div class="page" id="page-hasil">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
       <div>
@@ -626,6 +704,7 @@ input[type=range]::-webkit-slider-thumb{
     </div>
   </div>
 
+  <!-- ======================== SISWA ======================== -->
   <div class="page" id="page-siswa">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
       <div>
@@ -658,6 +737,7 @@ input[type=range]::-webkit-slider-thumb{
     </div>
   </div>
 
+  <!-- ======================== KRITERIA ======================== -->
   <div class="page" id="page-kriteria">
     <div style="margin-bottom:20px">
       <h1 style="font-size:18px;font-weight:700">⚖️ Kriteria & Bobot SAW</h1>
@@ -697,6 +777,7 @@ input[type=range]::-webkit-slider-thumb{
     </div>
   </div>
 
+  <!-- ======================== EVALUASI ======================== -->
   <div class="page" id="page-evaluasi">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
       <div>
@@ -756,6 +837,7 @@ input[type=range]::-webkit-slider-thumb{
         </div>
       </div>
 
+      <!-- Akurasi Top-K -->
       <div class="section-card">
         <div class="section-head">
           <div><h2>🎯 Akurasi Top-K</h2><p>Perbandingan kandidat terpilih SPK vs. kandidat terpilih pakar</p></div>
@@ -773,6 +855,7 @@ input[type=range]::-webkit-slider-thumb{
         </div>
       </div>
 
+      <!-- Sensitivitas Bobot -->
       <div class="section-card">
         <div class="section-head">
           <div><h2>⚗️ Analisis Sensitivitas Bobot</h2><p>Uji dampak perubahan bobot kriteria terhadap Top 3 kandidat terpilih</p></div>
@@ -794,8 +877,112 @@ input[type=range]::-webkit-slider-thumb{
   </div>
 
 
+
+  <!-- ======================== MACHINE LEARNING ======================== -->
+  <div class="page" id="page-ml">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <div>
+        <h1 style="font-size:18px;font-weight:700">🤖 SPK + Machine Learning — Random Forest</h1>
+        <p style="font-size:13px;color:var(--text3);margin-top:4px">Prediksi kelayakan siswa menggunakan model Random Forest yang dilatih dari data historis 48 siswa</p>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-ghost" onclick="cekStatusML()">🔄 Cek Server</button>
+        <button class="btn btn-primary" onclick="jalankanPrediksiSemua()">🚀 Prediksi Semua Siswa</button>
+      </div>
+    </div>
+
+    <!-- Status Server -->
+    <div id="mlServerStatus" class="notice notice-warn" style="margin-bottom:20px">
+      <span>⏳</span><div>Mengecek status Flask API server...</div>
+    </div>
+
+    <!-- Panduan Setup -->
+    <div class="section-card">
+      <div class="section-head"><div><h2>📋 Cara Setup Python ML Server</h2><p>Ikuti 3 langkah sebelum menggunakan fitur Machine Learning</p></div></div>
+      <div class="section-body">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px">
+            <div style="font-size:20px;margin-bottom:8px">1️⃣</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:6px">Install Library Python</div>
+            <code style="display:block;background:var(--bg);padding:10px;border-radius:6px;font-size:11px;color:var(--accent);border:1px solid var(--border)">pip install pandas scikit-learn joblib flask</code>
+          </div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px">
+            <div style="font-size:20px;margin-bottom:8px">2️⃣</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:6px">Training Model (sekali saja)</div>
+            <code style="display:block;background:var(--bg);padding:10px;border-radius:6px;font-size:11px;color:var(--accent);border:1px solid var(--border)">cd spk_tugas8/ml<br>python train_model.py</code>
+          </div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px">
+            <div style="font-size:20px;margin-bottom:8px">3️⃣</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:6px">Jalankan Flask Server</div>
+            <code style="display:block;background:var(--bg);padding:10px;border-radius:6px;font-size:11px;color:var(--accent);border:1px solid var(--border)">python predict_api.py</code>
+            <div style="font-size:11px;color:var(--text3);margin-top:6px">Biarkan terminal ini tetap berjalan</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Model (muncul setelah server aktif) -->
+    <div class="section-card" id="mlModelInfo" style="display:none">
+      <div class="section-head"><div><h2>📊 Evaluasi Model Random Forest</h2><p>Hasil training dari dataset 48 siswa SMAN 3 Malang</p></div></div>
+      <div class="section-body">
+        <div class="stats-grid" id="mlModelStats" style="grid-template-columns:repeat(auto-fit,minmax(155px,1fr))"></div>
+        <div style="margin-top:20px">
+          <div style="font-size:13px;font-weight:600;margin-bottom:12px;color:var(--text2)">🔍 Feature Importance — Faktor Paling Berpengaruh ke Prediksi</div>
+          <div id="mlFeatureImportance"></div>
+        </div>
+        <div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:10px;color:var(--text2)">📋 Classification Report</div>
+            <div id="mlClassReport"></div>
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:600;margin-bottom:10px;color:var(--text2)">🔲 Confusion Matrix</div>
+            <div id="mlConfMatrix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hasil Prediksi Batch -->
+    <div class="section-card" id="mlHasilCard" style="display:none">
+      <div class="section-head">
+        <div><h2>🎯 Hasil Prediksi ML — Seluruh Siswa</h2><p id="mlHasilInfo"></p></div>
+      </div>
+      <div class="section-body">
+        <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+          <div style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:8px;padding:10px 20px;text-align:center">
+            <div style="font-size:24px;font-weight:700;font-family:var(--mono);color:var(--green)" id="mlCountLayak">-</div>
+            <div style="font-size:12px;color:var(--green)">✅ LAYAK</div>
+          </div>
+          <div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:10px 20px;text-align:center">
+            <div style="font-size:24px;font-weight:700;font-family:var(--mono);color:var(--red)" id="mlCountTidak">-</div>
+            <div style="font-size:12px;color:var(--red)">❌ TIDAK LAYAK</div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nama Siswa</th>
+                <th class="td-center">Prediksi ML</th>
+                <th>Probabilitas Layak</th>
+                <th class="td-center">Prob. Tidak</th>
+                <th class="td-center">Rank SAW</th>
+              </tr>
+            </thead>
+            <tbody id="mlTabelHasil"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
+<!-- ============================================================
+     MODAL: Tambah Siswa
+     ============================================================ -->
 <div class="modal-overlay" id="modalSiswa">
   <div class="modal">
     <div class="modal-head">
@@ -832,6 +1019,9 @@ input[type=range]::-webkit-slider-thumb{
   </div>
 </div>
 
+<!-- ============================================================
+     MODAL: Input Nilai
+     ============================================================ -->
 <div class="modal-overlay" id="modalNilai">
   <div class="modal modal-wide">
     <div class="modal-head">
@@ -888,7 +1078,8 @@ function showPage(pageId, el) {
     hasil: '🏆 Hasil Peringkat',
     siswa: '👥 Data Siswa',
     kriteria: '⚖️ Kriteria & Bobot',
-    evaluasi: '🔬 Evaluasi SPK'
+    evaluasi: '🔬 Evaluasi SPK',
+    ml: '🤖 Machine Learning'
   };
   document.getElementById('topbarTitle').textContent = titles[pageId] || '';
 
@@ -897,6 +1088,7 @@ function showPage(pageId, el) {
   if (pageId === 'hasil') loadHasil();
   if (pageId === 'dashboard') { loadStats(); loadKriteriaData(); }
   if (pageId === 'evaluasi') { /* ready, user clicks run */ }
+  if (pageId === 'ml') { cekStatusML(); }
 }
 
 // ============================================================
@@ -1231,6 +1423,9 @@ async function simpanNilai() {
   if (res.success) closeModal('modalNilai');
 }
 
+// ============================================================
+// KRITERIA
+// ============================================================
 async function loadKriteriaPage() {
   const res = await api({ action: 'get_kriteria' });
   if (!res.success) return;
@@ -1323,6 +1518,9 @@ async function simpanBobot() {
   if (res.success) { loadKriteriaData(); loadKriteriaPage(); }
 }
 
+// ============================================================
+// MODAL HELPERS
+// ============================================================
 function openModal(id) {
   document.getElementById(id)?.classList.add('open');
 }
@@ -1335,6 +1533,9 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
   });
 });
 
+// ============================================================
+// LOADING
+// ============================================================
 function showLoading(txt = 'Memproses...') {
   document.getElementById('loadingTxt').textContent = txt;
   document.getElementById('loadingOverlay').classList.add('show');
@@ -1343,6 +1544,9 @@ function hideLoading() {
   document.getElementById('loadingOverlay').classList.remove('show');
 }
 
+// ============================================================
+// TOAST
+// ============================================================
 function toast(msg, type = 'info') {
   const icons = { success: '✅', error: '❌', info: 'ℹ️' };
   const el = document.createElement('div');
@@ -1352,6 +1556,9 @@ function toast(msg, type = 'info') {
   setTimeout(() => el.remove(), 4000);
 }
 
+// ============================================================
+// EVALUASI SPK
+// ============================================================
 async function jalankanEvaluasi() {
   showLoading('Menjalankan evaluasi SPK...');
   try {
@@ -1379,17 +1586,20 @@ function renderEvaluasi(d) {
   const ak  = d.akurasi;
   const mae = d.mae;
 
+  // ------ Interpretasi Spearman ------
   const rsVal = parseFloat(sp.rs);
   let rsLevel, rsColor, rsDesc;
   if (rsVal >= 0.90)      { rsLevel='Sangat Baik'; rsColor='var(--green)';  rsDesc='SPK sangat konsisten dengan penilaian pakar'; }
   else if (rsVal >= 0.70) { rsLevel='Cukup Baik';  rsColor='var(--gold)';   rsDesc='Konsistensi cukup, bobot dapat dikaji ulang'; }
   else                    { rsLevel='Rendah';       rsColor='var(--red)';    rsDesc='Penyimpangan signifikan, kalibrasi diperlukan'; }
 
+  // ------ MAE Interpretasi ------
   let maeLevel, maeColor;
   if (mae <= 1.5)      { maeLevel='Sangat Presisi'; maeColor='var(--green)'; }
   else if (mae <= 3.0) { maeLevel='Cukup';          maeColor='var(--gold)'; }
   else                 { maeLevel='Perlu Kalibrasi'; maeColor='var(--red)'; }
 
+  // ------ 4 Stat Cards ------
   document.getElementById('evalStatGrid').innerHTML = `
     <div class="stat-card">
       <div class="stat-icon" style="background:rgba(16,185,129,.15)">📐</div>
@@ -1424,14 +1634,17 @@ function renderEvaluasi(d) {
       </div>
     </div>`;
 
+  // ------ Spearman Formula Box ------
   document.getElementById('spearmanFormula').innerHTML =
     `<span style="color:var(--text3)">Rumus :</span> rs = 1 − (6 × Σd²) / (n × (n²−1))<br>` +
     `<span style="color:var(--text3)">Substitusi :</span> rs = 1 − (6 × <strong style="color:var(--accent)">${sp.sum_d2}</strong>) / (<strong style="color:var(--accent)">${sp.n}</strong> × (${sp.n}²−1))<br>` +
     `<span style="color:var(--text3)">Hasil :</span> rs = 1 − ${(6*sp.sum_d2)} / ${sp.n*(sp.n*sp.n-1)} = <strong style="color:${rsColor};font-size:15px">${rsVal.toFixed(4)}</strong> → ${rsLevel} · ${rsDesc}`;
 
+  // Spearman badge
   document.getElementById('spearmanBadge').innerHTML =
     `<span class="badge" style="background:rgba(16,185,129,.15);color:${rsColor};border:1px solid ${rsColor};font-size:13px;padding:4px 12px">${rsLevel} (${rsVal.toFixed(4)})</span>`;
 
+  // ------ Tabel Spearman ------
   const tbody = document.getElementById('tblSpearman');
   tbody.innerHTML = sp.details.map(r => {
     const absD = Math.abs(r.d);
@@ -1453,6 +1666,7 @@ function renderEvaluasi(d) {
     </tr>`;
   }).join('');
 
+  // ------ Akurasi Grid Cards ------
   const akCards = [
     { k:'top1',  label:'Top-1', icon:'🥇' },
     { k:'top3',  label:'Top-3', icon:'🏅' },
@@ -1474,6 +1688,7 @@ function renderEvaluasi(d) {
     </div>`;
   }).join('');
 
+  // ------ Tabel Akurasi Detail ------
   document.getElementById('tblAkurasi').innerHTML = akCards.map(c => {
     const item = ak[c.k];
     const pct  = parseFloat(item.pct);
@@ -1489,6 +1704,7 @@ function renderEvaluasi(d) {
     </tr>`;
   }).join('');
 
+  // ------ Sensitivitas ------
   const sensCols = ['C1 Rapor','C2 TOEFL','C3 Wawancara','C4 Mot.Letter','C5 Org'];
   document.getElementById('sensitivitasGrid').innerHTML =
     '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px">' +
@@ -1510,6 +1726,7 @@ function renderEvaluasi(d) {
       </div>`;
     }).join('') + '</div>';
 
+  // ------ Rekomendasi ------
   const lvlMap = {
     baik:   { bg:'rgba(16,185,129,.08)',  border:'rgba(16,185,129,.3)',  tx:'var(--green)' },
     sedang: { bg:'rgba(245,158,11,.08)',  border:'rgba(245,158,11,.3)',  tx:'var(--gold)' },
@@ -1532,6 +1749,180 @@ function renderEvaluasi(d) {
 
 
 // ============================================================
+
+// ============================================================
+// MACHINE LEARNING
+// ============================================================
+let mlServerOnline = false;
+let sawRankCache   = {};
+
+async function cekStatusML() {
+  const el = document.getElementById('mlServerStatus');
+  el.innerHTML = '<span>⏳</span><div>Mengecek server Flask di localhost:5000...</div>';
+  el.className = 'notice notice-warn';
+  try {
+    const res  = await fetch('api.php?action=ml_status');
+    const data = await res.json();
+    mlServerOnline = data.online;
+    if (data.online) {
+      el.innerHTML = '<span>✅</span><div><strong>Flask API server aktif</strong> — Model ML siap digunakan di localhost:5000</div>';
+      el.className = 'notice notice-success';
+      loadMLModelInfo();
+    } else {
+      el.innerHTML = `<span>❌</span><div><strong>Server ML tidak aktif.</strong> Buka terminal → masuk folder <code style="background:rgba(0,0,0,.3);padding:1px 5px;border-radius:3px">spk_tugas8/ml</code> → jalankan: <code style="background:rgba(0,0,0,.3);padding:1px 5px;border-radius:3px">python predict_api.py</code> → klik 🔄 Cek Server lagi.</div>`;
+      el.className = 'notice notice-warn';
+    }
+  } catch(e) {
+    el.innerHTML = '<span>⚠️</span><div>Tidak dapat terhubung. Pastikan XAMPP aktif dan Flask server berjalan.</div>';
+    el.className = 'notice notice-warn';
+  }
+}
+
+async function loadMLModelInfo() {
+  try {
+    const res  = await fetch('api.php?action=ml_model_info');
+    const data = await res.json();
+    if (!data.success || !data.data) return;
+    renderMLModelInfo(data.data);
+    document.getElementById('mlModelInfo').style.display = 'block';
+  } catch(e) {}
+}
+
+function renderMLModelInfo(d) {
+  // ── Stat Cards ──
+  document.getElementById('mlModelStats').innerHTML = `
+    <div class="stat-card"><div class="stat-icon green">🎯</div><div>
+      <div class="stat-val" style="color:var(--green)">${(d.akurasi*100).toFixed(1)}%</div>
+      <div class="stat-lbl">Akurasi Model</div><div class="stat-sub">Test Set</div></div></div>
+    <div class="stat-card"><div class="stat-icon blue">📈</div><div>
+      <div class="stat-val" style="color:var(--accent)">${d.auc_score.toFixed(4)}</div>
+      <div class="stat-lbl">ROC-AUC Score</div><div class="stat-sub">Mendekati 1 = terbaik</div></div></div>
+    <div class="stat-card"><div class="stat-icon purple">🌲</div><div>
+      <div class="stat-val">${d.n_estimators}</div>
+      <div class="stat-lbl">Pohon (Trees)</div><div class="stat-sub">Random Forest</div></div></div>
+    <div class="stat-card"><div class="stat-icon cyan">🔄</div><div>
+      <div class="stat-val" style="color:var(--accent2)">${(d.cv_mean*100).toFixed(1)}%</div>
+      <div class="stat-lbl">Cross-Val 5-Fold</div><div class="stat-sub">±${(d.cv_std*100).toFixed(1)}%</div></div></div>
+    <div class="stat-card"><div class="stat-icon gold">📊</div><div>
+      <div class="stat-val">${d.n_total}</div>
+      <div class="stat-lbl">Data Training</div>
+      <div class="stat-sub">Layak:${d.label_1_count} Tdk:${d.label_0_count}</div></div></div>`;
+
+  // ── Feature Importance ──
+  const fi      = d.feature_importance || {};
+  const sorted  = Object.entries(fi).sort((a,b) => b[1]-a[1]);
+  const colors  = ['#f59e0b','#3b82f6','#8b5cf6','#10b981','#06b6d4'];
+  document.getElementById('mlFeatureImportance').innerHTML = sorted.map(([name,val],i) => `
+    <div style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+        <span style="font-size:12px;font-weight:600">${name}</span>
+        <span style="font-family:var(--mono);font-size:12px;color:${colors[i]}">${(val*100).toFixed(1)}%</span>
+      </div>
+      <div class="score-bar" style="height:8px">
+        <div class="score-bar-fill" style="width:${(val*100).toFixed(1)}%;background:${colors[i]}"></div>
+      </div>
+    </div>`).join('');
+
+  // ── Classification Report ──
+  const cr = d.classification_report || {};
+  document.getElementById('mlClassReport').innerHTML = `
+    <table style="width:100%;font-size:12px;border-collapse:collapse">
+      <thead><tr style="background:rgba(30,45,69,.8)">
+        <th style="padding:7px 10px;text-align:left">Kelas</th>
+        <th style="padding:7px 10px;text-align:center">Precision</th>
+        <th style="padding:7px 10px;text-align:center">Recall</th>
+        <th style="padding:7px 10px;text-align:center">F1-Score</th>
+        <th style="padding:7px 10px;text-align:center">Support</th>
+      </tr></thead>
+      <tbody>
+        ${['0','1'].filter(k=>cr[k]).map(k=>`<tr style="border-bottom:1px solid rgba(30,45,69,.6)">
+          <td style="padding:7px 10px;font-weight:600">${k==='0'?'❌ Tidak Layak':'✅ Layak'}</td>
+          <td style="padding:7px 10px;text-align:center;font-family:var(--mono)">${(cr[k].precision*100).toFixed(1)}%</td>
+          <td style="padding:7px 10px;text-align:center;font-family:var(--mono)">${(cr[k].recall*100).toFixed(1)}%</td>
+          <td style="padding:7px 10px;text-align:center;font-family:var(--mono)">${(cr[k].f1_score*100).toFixed(1)}%</td>
+          <td style="padding:7px 10px;text-align:center;font-family:var(--mono)">${cr[k].support}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+
+  // ── Confusion Matrix ──
+  const cm = d.confusion_matrix || [[0,0],[0,0]];
+  document.getElementById('mlConfMatrix').innerHTML = `
+    <div style="display:inline-grid;grid-template-columns:auto auto auto;gap:4px;font-family:var(--mono);font-size:12px">
+      <div></div>
+      <div style="text-align:center;color:var(--text3);padding:4px 8px">Pred 0</div>
+      <div style="text-align:center;color:var(--text3);padding:4px 8px">Pred 1</div>
+      <div style="color:var(--text3);padding:4px 8px;display:flex;align-items:center">Actual 0</div>
+      <div style="background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);border-radius:6px;padding:10px 16px;text-align:center;font-size:18px;font-weight:700;color:var(--green)">${cm[0][0]}</div>
+      <div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:6px;padding:10px 16px;text-align:center;font-size:18px;font-weight:700;color:var(--red)">${cm[0][1]}</div>
+      <div style="color:var(--text3);padding:4px 8px;display:flex;align-items:center">Actual 1</div>
+      <div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:6px;padding:10px 16px;text-align:center;font-size:18px;font-weight:700;color:var(--red)">${cm[1][0]}</div>
+      <div style="background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);border-radius:6px;padding:10px 16px;text-align:center;font-size:18px;font-weight:700;color:var(--green)">${cm[1][1]}</div>
+    </div>
+    <div style="margin-top:10px;font-size:11px;color:var(--text3)">
+      ✅ TN=${cm[0][0]} · FP=${cm[0][1]} · FN=${cm[1][0]} · TP=${cm[1][1]}
+    </div>`;
+}
+
+async function jalankanPrediksiSemua() {
+  if (!mlServerOnline) {
+    toast('Server ML belum aktif. Klik 🔄 Cek Server terlebih dahulu.', 'error');
+    return;
+  }
+  showLoading('Memproses prediksi ML untuk seluruh siswa...');
+  try {
+    // Ambil data SAW untuk perbandingan rank
+    const resSAW = await fetch('api.php?action=get_hasil');
+    const datSAW = await resSAW.json();
+    sawRankCache  = {};
+    if (datSAW.success) datSAW.data.forEach(s => {
+      sawRankCache[s.nama] = { rank: parseInt(s.peringkat), skor: parseFloat(s.skor_saw) };
+    });
+
+    const res  = await fetch('api.php?action=ml_prediksi_semua');
+    const data = await res.json();
+    hideLoading();
+    if (!data.success) { toast('Prediksi gagal: ' + (data.message||''), 'error'); return; }
+    toast(`Prediksi selesai! ✅ Layak: ${data.data.layak} · ❌ Tidak: ${data.data.tidak_layak}`, 'success');
+    renderMLHasil(data.data);
+  } catch(e) { hideLoading(); toast('Error: '+e.message, 'error'); }
+}
+
+function renderMLHasil(d) {
+  document.getElementById('mlHasilCard').style.display = 'block';
+  document.getElementById('mlCountLayak').textContent  = d.layak;
+  document.getElementById('mlCountTidak').textContent  = d.tidak_layak;
+  document.getElementById('mlHasilInfo').textContent   =
+    `${d.total} siswa diprediksi · Layak: ${d.layak} · Tidak Layak: ${d.tidak_layak}`;
+
+  const body = document.getElementById('mlTabelHasil');
+  body.innerHTML = d.hasil.map((h, i) => {
+    const isLayak   = h.label === 1;
+    const barColor  = h.prob_layak >= 80 ? 'var(--green)' : h.prob_layak >= 50 ? 'var(--gold)' : 'var(--red)';
+    const sawInfo   = sawRankCache[h.nama];
+    const sawBadge  = sawInfo
+      ? `<span class="rank ${sawInfo.rank<=3?'rank-'+sawInfo.rank:'rank-n'}">${sawInfo.rank}</span>`
+      : '<span style="color:var(--text3)">–</span>';
+    return `<tr>
+      <td class="td-mono" style="color:var(--text3)">${i+1}</td>
+      <td style="font-weight:600">${h.nama}</td>
+      <td class="td-center">
+        <span class="badge ${isLayak?'badge-green':'badge-red'}" style="font-size:12px;padding:3px 10px">
+          ${isLayak?'✅ LAYAK':'❌ TIDAK LAYAK'}
+        </span>
+      </td>
+      <td>
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-bar-fill" style="width:${h.prob_layak}%;background:${barColor}"></div></div>
+          <span class="score-num" style="color:${barColor}">${h.prob_layak}%</span>
+        </div>
+      </td>
+      <td class="td-mono td-center" style="color:var(--red);font-size:12px">${h.prob_tidak}%</td>
+      <td class="td-center">${sawBadge}</td>
+    </tr>`;
+  }).join('');
+}
+
 </script>
 </body>
 </html>

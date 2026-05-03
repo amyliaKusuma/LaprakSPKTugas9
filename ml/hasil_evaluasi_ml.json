@@ -1,0 +1,64 @@
+{
+  "akurasi": 1.0,
+  "auc_score": 1.0,
+  "cv_mean": 0.9578,
+  "cv_std": 0.0518,
+  "n_training": 38,
+  "n_testing": 10,
+  "n_total": 48,
+  "n_estimators": 100,
+  "confusion_matrix": [
+    [
+      5,
+      0
+    ],
+    [
+      0,
+      5
+    ]
+  ],
+  "feature_importance": {
+    "C1 Nilai Rapor": 0.2683,
+    "C2 TOEFL": 0.2868,
+    "C3 Wawancara": 0.0685,
+    "C4 Motivation Letter": 0.1214,
+    "C5 Org/Prestasi": 0.2549
+  },
+  "classification_report": {
+    "0": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 5.0
+    },
+    "1": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 5.0
+    }
+  },
+  "fitur_kolom": [
+    "nilai_rapor",
+    "skor_toefl",
+    "nilai_wawancara",
+    "motivation_letter",
+    "org_prestasi"
+  ],
+  "label_1_count": 23,
+  "label_0_count": 25,
+  "scaler_mean": [
+    86.9729,
+    515.5208,
+    82.2083,
+    84.5,
+    80.0625
+  ],
+  "scaler_std": [
+    3.2556,
+    30.5239,
+    5.2992,
+    5.1438,
+    6.802
+  ]
+}
