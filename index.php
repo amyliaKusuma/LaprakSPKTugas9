@@ -43,9 +43,6 @@ body{
   overflow-x:hidden;
 }
 
-/* ============================================================
-   GRID NOISE BACKGROUND
-   ============================================================ */
 body::before{
   content:'';
   position:fixed;inset:0;
@@ -55,9 +52,6 @@ body::before{
   pointer-events:none;z-index:0;
 }
 
-/* ============================================================
-   SIDEBAR
-   ============================================================ */
 .sidebar{
   position:fixed;left:0;top:0;bottom:0;width:240px;
   background:var(--bg2);
@@ -100,9 +94,6 @@ body::before{
   line-height:1.6;
 }
 
-/* ============================================================
-   MAIN
-   ============================================================ */
 .main{
   margin-left:240px;
   min-height:100vh;
@@ -139,9 +130,6 @@ body::before{
 .page{padding:28px 32px;display:none}
 .page.active{display:block}
 
-/* ============================================================
-   STAT CARDS
-   ============================================================ */
 .stats-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
@@ -168,9 +156,6 @@ body::before{
 .stat-lbl{font-size:12px;color:var(--text2)}
 .stat-sub{font-size:11px;color:var(--text3);margin-top:2px;font-family:var(--mono)}
 
-/* ============================================================
-   SECTION CARD
-   ============================================================ */
 .section-card{
   background:var(--card);border:1px solid var(--border);
   border-radius:var(--radius);margin-bottom:20px;
@@ -184,9 +169,6 @@ body::before{
 .section-head p{font-size:12px;color:var(--text3);margin-top:2px}
 .section-body{padding:20px}
 
-/* ============================================================
-   TABLE
-   ============================================================ */
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:13px}
 thead tr{background:rgba(30,45,69,.8)}
@@ -205,7 +187,6 @@ tr:hover td{background:rgba(59,130,246,.04)}
 .td-mono{font-family:var(--mono);font-size:12.5px}
 .td-center{text-align:center}
 
-/* Rank badge */
 .rank{
   display:inline-flex;align-items:center;justify-content:center;
   width:28px;height:28px;border-radius:50%;
@@ -222,7 +203,6 @@ tr:hover td{background:rgba(59,130,246,.04)}
 .score-bar-fill{height:100%;border-radius:3px;transition:width .5s ease}
 .score-num{font-family:var(--mono);font-size:12px;white-space:nowrap;min-width:50px;text-align:right}
 
-/* Bobot chip */
 .bobot-chip{
   display:inline-block;padding:2px 8px;border-radius:20px;
   font-size:11px;font-weight:600;font-family:var(--mono);
@@ -230,9 +210,6 @@ tr:hover td{background:rgba(59,130,246,.04)}
   border:1px solid rgba(59,130,246,.3);
 }
 
-/* ============================================================
-   BADGE / TAG
-   ============================================================ */
 .badge{
   display:inline-block;padding:2px 8px;border-radius:20px;
   font-size:11px;font-weight:600;
@@ -241,9 +218,6 @@ tr:hover td{background:rgba(59,130,246,.04)}
 .badge-red{background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.3)}
 .badge-blue{background:rgba(59,130,246,.15);color:var(--accent);border:1px solid rgba(59,130,246,.3)}
 
-/* ============================================================
-   FORM ELEMENTS
-   ============================================================ */
 .form-group{margin-bottom:16px}
 .form-group label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px}
 .form-control{
@@ -259,9 +233,6 @@ select.form-control{cursor:pointer}
 .form-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
 .form-hint{font-size:11px;color:var(--text3);margin-top:4px}
 
-/* ============================================================
-   MODAL
-   ============================================================ */
 .modal-overlay{
   position:fixed;inset:0;background:rgba(0,0,0,.7);
   backdrop-filter:blur(6px);
@@ -295,9 +266,6 @@ select.form-control{cursor:pointer}
   display:flex;align-items:center;justify-content:flex-end;gap:10px;
 }
 
-/* ============================================================
-   NOTICE / ALERT
-   ============================================================ */
 .notice{
   padding:12px 16px;border-radius:8px;font-size:13px;
   display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;
@@ -306,9 +274,6 @@ select.form-control{cursor:pointer}
 .notice-success{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);color:#6ee7b7}
 .notice-warn{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:#fcd34d}
 
-/* ============================================================
-   TOP 3 PODIUM
-   ============================================================ */
 .podium{
   display:flex;align-items:flex-end;justify-content:center;
   gap:12px;padding:16px 0 24px;margin-bottom:8px;
@@ -345,9 +310,6 @@ select.form-control{cursor:pointer}
 .podium-bar.pos-2{background:rgba(148,163,184,.15);color:var(--silver);height:40px}
 .podium-bar.pos-3{background:rgba(180,83,9,.15);color:#cd7c3a;height:28px}
 
-/* ============================================================
-   NORMALISASI DETAIL TABLE
-   ============================================================ */
 .detail-grid{
   display:grid;grid-template-columns:repeat(5,1fr);gap:8px;
   margin-top:12px;
@@ -360,9 +322,6 @@ select.form-control{cursor:pointer}
 .detail-cell-raw{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
 .detail-cell-norm{font-size:11px;color:var(--accent);font-family:var(--mono)}
 
-/* ============================================================
-   BOBOT SLIDER
-   ============================================================ */
 .bobot-row{
   display:grid;grid-template-columns:120px 1fr 70px 60px;
   align-items:center;gap:12px;padding:12px 0;
@@ -394,9 +353,6 @@ input[type=range]::-webkit-slider-thumb{
 .bobot-total.ok .val{color:var(--green)}
 .bobot-total.err .val{color:var(--red)}
 
-/* ============================================================
-   LOADING / SPINNER
-   ============================================================ */
 .spinner{
   display:inline-block;width:18px;height:18px;
   border:2px solid rgba(59,130,246,.3);border-top-color:var(--accent);
@@ -412,9 +368,6 @@ input[type=range]::-webkit-slider-thumb{
 .loading-overlay.show{display:flex}
 .loading-txt{font-size:14px;color:var(--text2);font-family:var(--mono)}
 
-/* ============================================================
-   TOAST
-   ============================================================ */
 #toast-container{
   position:fixed;bottom:24px;right:24px;z-index:3000;
   display:flex;flex-direction:column;gap:8px;
@@ -431,9 +384,6 @@ input[type=range]::-webkit-slider-thumb{
 .toast-error{background:#450a0a;border:1px solid rgba(239,68,68,.4);color:#fca5a5}
 .toast-info{background:#1e3a5f;border:1px solid rgba(59,130,246,.4);color:#93c5fd}
 
-/* ============================================================
-   EMPTY STATE
-   ============================================================ */
 .empty{
   padding:48px 20px;text-align:center;
 }
@@ -441,9 +391,6 @@ input[type=range]::-webkit-slider-thumb{
 .empty-title{font-size:15px;font-weight:600;margin-bottom:6px}
 .empty-sub{font-size:13px;color:var(--text3)}
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 @media(max-width:768px){
   .sidebar{width:200px}
   .main{margin-left:200px}
@@ -455,22 +402,11 @@ input[type=range]::-webkit-slider-thumb{
 </head>
 <body>
 
-<!-- ============================================================
-     LOADING OVERLAY
-     ============================================================ -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner" style="width:36px;height:36px;border-width:3px"></div>
   <div class="loading-txt" id="loadingTxt">Memproses perhitungan SAW...</div>
 </div>
-
-<!-- ============================================================
-     TOAST CONTAINER
-     ============================================================ -->
 <div id="toast-container"></div>
-
-<!-- ============================================================
-     SIDEBAR
-     ============================================================ -->
 <aside class="sidebar">
   <div class="sidebar-logo">
     <div class="app-title">⚡ SPK Seleksi</div>
@@ -479,26 +415,26 @@ input[type=range]::-webkit-slider-thumb{
   <nav class="nav">
     <div class="nav-section">Menu Utama</div>
     <div class="nav-item active" data-page="dashboard" onclick="showPage('dashboard',this)">
-      <span class="icon">📊</span> Dashboard
+      <span class="icon"></span> Dashboard
     </div>
     <div class="nav-item" data-page="perhitungan" onclick="showPage('perhitungan',this)">
-      <span class="icon">🧮</span> Hitung SAW
+      <span class="icon"></span> Hitung SAW
     </div>
     <div class="nav-item" data-page="hasil" onclick="showPage('hasil',this)">
-      <span class="icon">🏆</span> Hasil Peringkat
+      <span class="icon"></span> Hasil Peringkat
     </div>
     <div class="nav-item" data-page="ml" onclick="showPage('ml',this)">
-      <span class="icon">🤖</span> Machine Learning
+      <span class="icon"></span> Machine Learning
     </div>
     <div class="nav-item" data-page="evaluasi" onclick="showPage('evaluasi',this)">
-      <span class="icon">🔬</span> Evaluasi SPK
+      <span class="icon"></span> Evaluasi SPK
     </div>
     <div class="nav-section">Data Master</div>
     <div class="nav-item" data-page="siswa" onclick="showPage('siswa',this)">
-      <span class="icon">👥</span> Data Siswa
+      <span class="icon"></span> Data Siswa
     </div>
     <div class="nav-item" data-page="kriteria" onclick="showPage('kriteria',this)">
-      <span class="icon">⚖️</span> Kriteria & Bobot
+      <span class="icon"></span> Kriteria & Bobot
     </div>
   </nav>
   <div class="sidebar-footer">
@@ -507,16 +443,12 @@ input[type=range]::-webkit-slider-thumb{
     © 2026 PTI – UB
   </div>
 </aside>
-
-<!-- ============================================================
-     MAIN
-     ============================================================ -->
 <main class="main">
   <div class="topbar">
-    <div class="topbar-title" id="topbarTitle">📊 Dashboard</div>
+    <div class="topbar-title" id="topbarTitle">Dashboard</div>
     <div class="topbar-right">
       <button class="btn btn-primary" onclick="showPage('perhitungan', document.querySelector('[data-page=perhitungan]'))">
-        🧮 Hitung SAW
+        Hitung SAW
       </button>
     </div>
   </div>
@@ -562,7 +494,7 @@ input[type=range]::-webkit-slider-thumb{
     <div class="section-card" id="podiumCard" style="display:none">
       <div class="section-head">
         <div>
-          <h2>🏆 Top 3 Kandidat Terbaik</h2>
+          <h2>Top 3 Kandidat Terbaik</h2>
           <p>Berdasarkan skor SAW tertinggi</p>
         </div>
       </div>
@@ -573,25 +505,25 @@ input[type=range]::-webkit-slider-thumb{
 
     <!-- Informasi Metode -->
     <div class="section-card">
-      <div class="section-head"><div><h2>📚 Metode SAW – Simple Additive Weighting</h2></div></div>
+      <div class="section-head"><div><h2>Metode SAW – Simple Additive Weighting</h2></div></div>
       <div class="section-body">
         <div class="notice notice-info">
-          <span>ℹ️</span>
+          <span></span>
           <div>SAW menghitung skor akhir dengan menjumlahkan hasil perkalian bobot kriteria dengan nilai ternormalisasi setiap alternatif. Formula: <strong>Vi = Σ(Wj × Rij)</strong></div>
         </div>
         <div class="form-grid-3">
           <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;">
-            <div style="font-size:20px;margin-bottom:8px">1️⃣</div>
+            <div style="font-size:20px;margin-bottom:8px">1</div>
             <div style="font-size:13px;font-weight:700;margin-bottom:4px">Matriks Keputusan</div>
             <div style="font-size:12px;color:var(--text3)">Susun data nilai asli seluruh siswa pada setiap kriteria ke dalam matriks X[i][j]</div>
           </div>
           <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;">
-            <div style="font-size:20px;margin-bottom:8px">2️⃣</div>
+            <div style="font-size:20px;margin-bottom:8px">2</div>
             <div style="font-size:13px;font-weight:700;margin-bottom:4px">Normalisasi</div>
             <div style="font-size:12px;color:var(--text3)">Benefit: <span style="font-family:var(--mono);color:var(--accent)">Rij = Xij / Max(Xj)</span><br>Cost: <span style="font-family:var(--mono);color:var(--accent)">Rij = Min(Xj) / Xij</span></div>
           </div>
           <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;">
-            <div style="font-size:20px;margin-bottom:8px">3️⃣</div>
+            <div style="font-size:20px;margin-bottom:8px">3</div>
             <div style="font-size:13px;font-weight:700;margin-bottom:4px">Skor Akhir</div>
             <div style="font-size:12px;color:var(--text3)"><span style="font-family:var(--mono);color:var(--accent)">Vi = Σ(Wj × Rij)</span><br>Urutkan Vi terbesar = terbaik</div>
           </div>
@@ -610,7 +542,7 @@ input[type=range]::-webkit-slider-thumb{
     <div class="section-card">
       <div class="section-head">
         <div>
-          <h2>🧮 Jalankan Perhitungan SAW</h2>
+          <h2>Jalankan Perhitungan SAW</h2>
           <p>Klik tombol di bawah untuk menghitung dan memperbarui peringkat seluruh siswa</p>
         </div>
       </div>
@@ -621,7 +553,7 @@ input[type=range]::-webkit-slider-thumb{
         </div>
         <div style="text-align:center;padding:24px 0">
           <button class="btn btn-primary" style="padding:14px 36px;font-size:15px" onclick="hitungSAW()">
-            🚀 Hitung SAW Sekarang
+            Hitung SAW Sekarang
           </button>
         </div>
       </div>
@@ -631,7 +563,7 @@ input[type=range]::-webkit-slider-thumb{
     <div id="hasilPerhitungan" style="display:none">
       <div class="section-card">
         <div class="section-head">
-          <div><h2>📊 Matriks Normalisasi & Skor SAW</h2><p id="hasilInfo"></p></div>
+          <div><h2>Matriks Normalisasi & Skor SAW</h2><p id="hasilInfo"></p></div>
           <button class="btn btn-ghost btn-sm" onclick="showPage('hasil', document.querySelector('[data-page=hasil]'))">Lihat Peringkat →</button>
         </div>
         <div class="section-body">
@@ -639,7 +571,7 @@ input[type=range]::-webkit-slider-thumb{
             <table id="tblNormalisasi">
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th>Rank</th>
                   <th>Nama Siswa</th>
                   <th class="td-center">R C1<br><small>Rapor</small></th>
                   <th class="td-center">R C2<br><small>TOEFL</small></th>
@@ -661,10 +593,10 @@ input[type=range]::-webkit-slider-thumb{
   <div class="page" id="page-hasil">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
       <div>
-        <h1 style="font-size:18px;font-weight:700">🏆 Peringkat Siswa – Seleksi Student Exchange</h1>
+        <h1 style="font-size:18px;font-weight:700">Peringkat Siswa – Seleksi Student Exchange</h1>
         <p style="font-size:13px;color:var(--text3);margin-top:4px">Diurutkan berdasarkan Skor SAW tertinggi</p>
       </div>
-      <button class="btn btn-success" onclick="hitungSAW()">🔄 Hitung Ulang</button>
+      <button class="btn btn-success" onclick="hitungSAW()">Hitung Ulang</button>
     </div>
 
     <div id="hasilEmpty" class="section-card">
@@ -757,7 +689,7 @@ input[type=range]::-webkit-slider-thumb{
           <span class="val" id="bobotTotalVal">0%</span>
         </div>
         <div style="margin-top:16px;display:flex;justify-content:flex-end">
-          <button class="btn btn-primary" onclick="simpanBobot()">💾 Simpan Bobot</button>
+          <button class="btn btn-primary" onclick="simpanBobot()">Simpan Bobot</button>
         </div>
       </div>
     </div>
@@ -781,21 +713,21 @@ input[type=range]::-webkit-slider-thumb{
   <div class="page" id="page-evaluasi">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
       <div>
-        <h1 style="font-size:18px;font-weight:700">🔬 Evaluasi & Peningkatan Kinerja SPK</h1>
+        <h1 style="font-size:18px;font-weight:700">Evaluasi & Peningkatan Kinerja SPK</h1>
         <p style="font-size:13px;color:var(--text3);margin-top:4px">Mengukur efektivitas SPK menggunakan Spearman Correlation, Akurasi Top-K, dan MAE</p>
       </div>
-      <button class="btn btn-primary" onclick="jalankanEvaluasi()">▶️ Jalankan Evaluasi</button>
+      <button class="btn btn-primary" onclick="jalankanEvaluasi()">Jalankan Evaluasi</button>
     </div>
 
     <div class="notice notice-info" style="margin-bottom:20px">
-      <span>ℹ️</span>
+      <span></span>
       <div><strong>Ground Truth</strong> ditetapkan berdasarkan penilaian holistik pakar/tim seleksi terhadap 36 siswa SMAN 3 Malang. Evaluasi membandingkan urutan SPK dengan urutan pakar menggunakan beberapa metrik statistik.</div>
     </div>
 
     <div id="evalEmpty" class="section-card">
       <div class="section-body">
         <div class="empty">
-          <div class="empty-icon">🔬</div>
+          <div class="empty-icon"></div>
           <div class="empty-title">Siap Menjalankan Evaluasi</div>
           <div class="empty-sub">Pastikan perhitungan SAW sudah dijalankan, lalu klik tombol "Jalankan Evaluasi" di atas.</div>
         </div>
@@ -811,7 +743,7 @@ input[type=range]::-webkit-slider-thumb{
       <div class="section-card">
         <div class="section-head">
           <div>
-            <h2>📐 Spearman Rank Correlation</h2>
+            <h2>Spearman Rank Correlation</h2>
             <p>Mengukur kesesuaian urutan peringkat SPK vs. pakar · Rumus: rs = 1 − (6·Σd²) / (n·(n²−1))</p>
           </div>
           <div id="spearmanBadge"></div>
@@ -840,7 +772,7 @@ input[type=range]::-webkit-slider-thumb{
       <!-- Akurasi Top-K -->
       <div class="section-card">
         <div class="section-head">
-          <div><h2>🎯 Akurasi Top-K</h2><p>Perbandingan kandidat terpilih SPK vs. kandidat terpilih pakar</p></div>
+          <div><h2>Akurasi Top-K</h2><p>Perbandingan kandidat terpilih SPK vs. kandidat terpilih pakar</p></div>
         </div>
         <div class="section-body">
           <div id="akurasiGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:20px"></div>
@@ -858,7 +790,7 @@ input[type=range]::-webkit-slider-thumb{
       <!-- Sensitivitas Bobot -->
       <div class="section-card">
         <div class="section-head">
-          <div><h2>⚗️ Analisis Sensitivitas Bobot</h2><p>Uji dampak perubahan bobot kriteria terhadap Top 3 kandidat terpilih</p></div>
+          <div><h2>Analisis Sensitivitas Bobot</h2><p>Uji dampak perubahan bobot kriteria terhadap Top 3 kandidat terpilih</p></div>
         </div>
         <div class="section-body">
           <div id="sensitivitasGrid"></div>
@@ -868,7 +800,7 @@ input[type=range]::-webkit-slider-thumb{
       <!-- Rekomendasi -->
       <div class="section-card">
         <div class="section-head">
-          <div><h2>💡 Rekomendasi Perbaikan SPK</h2><p>Analisis otomatis berdasarkan hasil metrik evaluasi</p></div>
+          <div><h2>Rekomendasi Perbaikan SPK</h2><p>Analisis otomatis berdasarkan hasil metrik evaluasi</p></div>
         </div>
         <div class="section-body" id="rekomendasiBody"></div>
       </div>
@@ -886,8 +818,8 @@ input[type=range]::-webkit-slider-thumb{
         <p style="font-size:13px;color:var(--text3);margin-top:4px">Prediksi kelayakan siswa menggunakan model Random Forest yang dilatih dari data historis 48 siswa</p>
       </div>
       <div style="display:flex;gap:8px">
-        <button class="btn btn-ghost" onclick="cekStatusML()">🔄 Cek Server</button>
-        <button class="btn btn-primary" onclick="jalankanPrediksiSemua()">🚀 Prediksi Semua Siswa</button>
+        <button class="btn btn-ghost" onclick="cekStatusML()">Cek Server</button>
+        <button class="btn btn-primary" onclick="jalankanPrediksiSemua()">Prediksi Semua Siswa</button>
       </div>
     </div>
 
@@ -902,17 +834,17 @@ input[type=range]::-webkit-slider-thumb{
       <div class="section-body">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
           <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px">
-            <div style="font-size:20px;margin-bottom:8px">1️⃣</div>
+            <div style="font-size:20px;margin-bottom:8px">1</div>
             <div style="font-size:13px;font-weight:700;margin-bottom:6px">Install Library Python</div>
             <code style="display:block;background:var(--bg);padding:10px;border-radius:6px;font-size:11px;color:var(--accent);border:1px solid var(--border)">pip install pandas scikit-learn joblib flask</code>
           </div>
           <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px">
-            <div style="font-size:20px;margin-bottom:8px">2️⃣</div>
+            <div style="font-size:20px;margin-bottom:8px">2</div>
             <div style="font-size:13px;font-weight:700;margin-bottom:6px">Training Model (sekali saja)</div>
             <code style="display:block;background:var(--bg);padding:10px;border-radius:6px;font-size:11px;color:var(--accent);border:1px solid var(--border)">cd spk_tugas8/ml<br>python train_model.py</code>
           </div>
           <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px">
-            <div style="font-size:20px;margin-bottom:8px">3️⃣</div>
+            <div style="font-size:20px;margin-bottom:8px">3</div>
             <div style="font-size:13px;font-weight:700;margin-bottom:6px">Jalankan Flask Server</div>
             <code style="display:block;background:var(--bg);padding:10px;border-radius:6px;font-size:11px;color:var(--accent);border:1px solid var(--border)">python predict_api.py</code>
             <div style="font-size:11px;color:var(--text3);margin-top:6px">Biarkan terminal ini tetap berjalan</div>
@@ -923,7 +855,7 @@ input[type=range]::-webkit-slider-thumb{
 
     <!-- Info Model (muncul setelah server aktif) -->
     <div class="section-card" id="mlModelInfo" style="display:none">
-      <div class="section-head"><div><h2>📊 Evaluasi Model Random Forest</h2><p>Hasil training dari dataset 48 siswa SMAN 3 Malang</p></div></div>
+      <div class="section-head"><div><h2>Evaluasi Model Random Forest</h2><p>Hasil training dari dataset 48 siswa SMAN 3 Malang</p></div></div>
       <div class="section-body">
         <div class="stats-grid" id="mlModelStats" style="grid-template-columns:repeat(auto-fit,minmax(155px,1fr))"></div>
         <div style="margin-top:20px">
@@ -946,17 +878,17 @@ input[type=range]::-webkit-slider-thumb{
     <!-- Hasil Prediksi Batch -->
     <div class="section-card" id="mlHasilCard" style="display:none">
       <div class="section-head">
-        <div><h2>🎯 Hasil Prediksi ML — Seluruh Siswa</h2><p id="mlHasilInfo"></p></div>
+        <div><h2>Hasil Prediksi ML — Seluruh Siswa</h2><p id="mlHasilInfo"></p></div>
       </div>
       <div class="section-body">
         <div style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
           <div style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:8px;padding:10px 20px;text-align:center">
             <div style="font-size:24px;font-weight:700;font-family:var(--mono);color:var(--green)" id="mlCountLayak">-</div>
-            <div style="font-size:12px;color:var(--green)">✅ LAYAK</div>
+            <div style="font-size:12px;color:var(--green)">LAYAK</div>
           </div>
           <div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:10px 20px;text-align:center">
             <div style="font-size:24px;font-weight:700;font-family:var(--mono);color:var(--red)" id="mlCountTidak">-</div>
-            <div style="font-size:12px;color:var(--red)">❌ TIDAK LAYAK</div>
+            <div style="font-size:12px;color:var(--red)">TIDAK LAYAK</div>
           </div>
         </div>
         <div class="table-wrap">
@@ -1030,7 +962,7 @@ input[type=range]::-webkit-slider-thumb{
     </div>
     <div class="modal-body">
       <div class="notice notice-info" style="margin-bottom:16px">
-        <span>📌</span>
+        <span></span>
         <div><strong>Panduan Rentang Nilai:</strong> C1 Rapor (80–100) · C2 TOEFL (450–677) · C3 Wawancara (0–100) · C4 Mot.Letter (0–100) · C5 Org (0–100)</div>
       </div>
       <div id="nilaiFormContainer"></div>
@@ -1042,20 +974,11 @@ input[type=range]::-webkit-slider-thumb{
   </div>
 </div>
 
-<!-- ============================================================
-     JAVASCRIPT
-     ============================================================ -->
 <script>
-// ============================================================
-// STATE
-// ============================================================
 let currentSiswaId = null;
 let kriteriaList = [];
 let hasilData = [];
 
-// ============================================================
-// INIT
-// ============================================================
 document.addEventListener('DOMContentLoaded', () => {
   loadStats();
   loadKriteriaData();
@@ -1063,9 +986,6 @@ document.addEventListener('DOMContentLoaded', () => {
   loadSiswa();
 });
 
-// ============================================================
-// PAGE NAVIGATION
-// ============================================================
 function showPage(pageId, el) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -1073,13 +993,13 @@ function showPage(pageId, el) {
   if (el) el.classList.add('active');
 
   const titles = {
-    dashboard: '📊 Dashboard',
-    perhitungan: '🧮 Hitung SAW',
-    hasil: '🏆 Hasil Peringkat',
-    siswa: '👥 Data Siswa',
-    kriteria: '⚖️ Kriteria & Bobot',
-    evaluasi: '🔬 Evaluasi SPK',
-    ml: '🤖 Machine Learning'
+    dashboard: 'Dashboard',
+    perhitungan: 'Hitung SAW',
+    hasil: 'Hasil Peringkat',
+    siswa: 'Data Siswa',
+    kriteria: 'Kriteria & Bobot',
+    evaluasi: 'Evaluasi SPK',
+    ml: 'Machine Learning'
   };
   document.getElementById('topbarTitle').textContent = titles[pageId] || '';
 
