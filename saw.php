@@ -1,7 +1,4 @@
 <?php
-// ============================================================
-// saw.php — Engine Perhitungan SAW (Simple Additive Weighting)
-// ============================================================
 require_once 'config.php';
 
 class SAW {
@@ -17,9 +14,6 @@ class SAW {
         $this->db = getDB();
     }
 
-    // ----------------------------------------------------------
-    // 1. Ambil semua data dari DB
-    // ----------------------------------------------------------
     public function loadData(): void {
         // Kriteria
         $stmt = $this->db->query("SELECT * FROM kriteria ORDER BY urutan");
@@ -35,10 +29,6 @@ class SAW {
             $this->nilaiMatrix[$row['siswa_id']][$row['kriteria_id']] = (float)$row['nilai'];
         }
     }
-
-    // ----------------------------------------------------------
-    // 2. Hitung Max & Min per kriteria
-    // ----------------------------------------------------------
     private function hitungMaxMin(): void {
         foreach ($this->kriteria as $k) {
             $kid = $k['id'];
@@ -53,11 +43,6 @@ class SAW {
         }
     }
 
-    // ----------------------------------------------------------
-    // 3. Normalisasi Matriks Rij
-    //    Benefit: Rij = Xij / Max(Xj)
-    //    Cost:    Rij = Min(Xj) / Xij
-    // ----------------------------------------------------------
     private function normalisasi(): void {
         foreach ($this->siswa as $s) {
             $sid = $s['id'];
@@ -77,9 +62,6 @@ class SAW {
         }
     }
 
-    // ----------------------------------------------------------
-    // 4. Hitung Skor Akhir Vi = Σ(Wj × Rij)
-    // ----------------------------------------------------------
     private function hitungSkor(): void {
         foreach ($this->siswa as $s) {
             $sid = $s['id'];
@@ -94,9 +76,6 @@ class SAW {
         }
     }
 
-    // ----------------------------------------------------------
-    // 5. Simpan hasil ke tabel hasil_seleksi
-    // ----------------------------------------------------------
     private function simpanHasil(array $ranked): void {
         $this->db->exec("DELETE FROM hasil_seleksi");
         $stmt = $this->db->prepare(
@@ -107,9 +86,6 @@ class SAW {
         }
     }
 
-    // ----------------------------------------------------------
-    // 6. Jalankan semua proses SAW
-    // ----------------------------------------------------------
     public function jalankan(): array {
         $this->loadData();
         $this->hitungMaxMin();
@@ -149,9 +125,6 @@ class SAW {
         ];
     }
 
-    // ----------------------------------------------------------
-    // 7. Ambil hasil dari DB (tanpa hitung ulang)
-    // ----------------------------------------------------------
     public function getHasil(): array {
         $stmt = $this->db->query("
             SELECT hs.*, s.nama, s.kelas, s.jenis_kelamin
@@ -162,9 +135,6 @@ class SAW {
         return $stmt->fetchAll();
     }
 
-    // ----------------------------------------------------------
-    // 8. CRUD: Siswa
-    // ----------------------------------------------------------
     public function getSiswa(): array {
         return $this->db->query("SELECT * FROM siswa ORDER BY nama")->fetchAll();
     }
@@ -185,9 +155,6 @@ class SAW {
         return $this->db->prepare("DELETE FROM siswa WHERE id = ?")->execute([$id]);
     }
 
-    // ----------------------------------------------------------
-    // 9. CRUD: Nilai
-    // ----------------------------------------------------------
     public function getNilaiSiswa(int $siswaId): array {
         $stmt = $this->db->prepare("
             SELECT ns.*, k.kode, k.nama_kriteria, k.bobot, k.jenis
@@ -213,9 +180,6 @@ class SAW {
         return true;
     }
 
-    // ----------------------------------------------------------
-    // 10. CRUD: Kriteria (bobot)
-    // ----------------------------------------------------------
     public function getKriteria(): array {
         return $this->db->query("SELECT * FROM kriteria ORDER BY urutan")->fetchAll();
     }
@@ -229,7 +193,6 @@ class SAW {
         return true;
     }
 
-    // Statistik ringkas
     public function getStats(): array {
         $totalSiswa   = $this->db->query("SELECT COUNT(*) FROM siswa")->fetchColumn();
         $totalNilai   = $this->db->query("SELECT COUNT(*) FROM nilai_siswa")->fetchColumn();

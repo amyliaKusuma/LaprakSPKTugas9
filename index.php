@@ -814,7 +814,7 @@ input[type=range]::-webkit-slider-thumb{
   <div class="page" id="page-ml">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
       <div>
-        <h1 style="font-size:18px;font-weight:700">🤖 SPK + Machine Learning — Random Forest</h1>
+        <h1 style="font-size:18px;font-weight:700">SPK + Machine Learning — Random Forest</h1>
         <p style="font-size:13px;color:var(--text3);margin-top:4px">Prediksi kelayakan siswa menggunakan model Random Forest yang dilatih dari data historis 48 siswa</p>
       </div>
       <div style="display:flex;gap:8px">
@@ -825,33 +825,93 @@ input[type=range]::-webkit-slider-thumb{
 
     <!-- Status Server -->
     <div id="mlServerStatus" class="notice notice-warn" style="margin-bottom:20px">
-      <span>⏳</span><div>Mengecek status Flask API server...</div>
+      <span>⏳</span><div>Mengecek status Fast server...</div>
     </div>
 
-    <!-- Panduan Setup -->
-    <div class="section-card">
-      <div class="section-head"><div><h2>📋 Cara Setup Python ML Server</h2><p>Ikuti 3 langkah sebelum menggunakan fitur Machine Learning</p></div></div>
-      <div class="section-body">
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
-          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px">
-            <div style="font-size:20px;margin-bottom:8px">1</div>
-            <div style="font-size:13px;font-weight:700;margin-bottom:6px">Install Library Python</div>
-            <code style="display:block;background:var(--bg);padding:10px;border-radius:6px;font-size:11px;color:var(--accent);border:1px solid var(--border)">pip install pandas scikit-learn joblib flask</code>
-          </div>
-          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px">
-            <div style="font-size:20px;margin-bottom:8px">2</div>
-            <div style="font-size:13px;font-weight:700;margin-bottom:6px">Training Model (sekali saja)</div>
-            <code style="display:block;background:var(--bg);padding:10px;border-radius:6px;font-size:11px;color:var(--accent);border:1px solid var(--border)">cd spk_tugas8/ml<br>python train_model.py</code>
-          </div>
-          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px">
-            <div style="font-size:20px;margin-bottom:8px">3</div>
-            <div style="font-size:13px;font-weight:700;margin-bottom:6px">Jalankan Flask Server</div>
-            <code style="display:block;background:var(--bg);padding:10px;border-radius:6px;font-size:11px;color:var(--accent);border:1px solid var(--border)">python predict_api.py</code>
-            <div style="font-size:11px;color:var(--text3);margin-top:6px">Biarkan terminal ini tetap berjalan</div>
-          </div>
+<!-- Panduan Setup -->
+<div class="section-card">
+  <div class="section-head">
+    <div>
+      <h2>Cara Setup Python ML Server</h2>
+      <p>Ikuti langkah berikut sebelum menggunakan fitur Machine Learning & FastAPI</p>
+    </div>
+  </div>
+
+  <div class="section-body">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px">
+
+      <!-- STEP 1 -->
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px">
+        <div style="font-size:20px;margin-bottom:8px">1</div>
+
+        <div style="font-size:13px;font-weight:700;margin-bottom:6px">
+          Install Library Python
+        </div>
+
+        <code style="display:block;background:var(--bg);padding:10px;border-radius:6px;font-size:11px;color:var(--accent);border:1px solid var(--border)">
+pip install fastapi uvicorn pandas scikit-learn joblib numpy
+        </code>
+
+        <div style="font-size:11px;color:var(--text3);margin-top:6px">
+          Jalankan sekali saja untuk install dependency Python
         </div>
       </div>
+
+      <!-- STEP 2 -->
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px">
+        <div style="font-size:20px;margin-bottom:8px">2</div>
+
+        <div style="font-size:13px;font-weight:700;margin-bottom:6px">
+          Training Model Machine Learning
+        </div>
+
+        <code style="display:block;background:var(--bg);padding:10px;border-radius:6px;font-size:11px;color:var(--accent);border:1px solid var(--border)">
+cd ml
+python train_model.py
+        </code>
+
+        <div style="font-size:11px;color:var(--text3);margin-top:6px">
+          Jalankan sekali untuk membuat model_siswa.pkl dan scaler_siswa.pkl
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px">
+        <div style="font-size:20px;margin-bottom:8px">3</div>
+
+        <div style="font-size:13px;font-weight:700;margin-bottom:6px">
+          Jalankan FastAPI ML Server
+        </div>
+
+        <code style="display:block;background:var(--bg);padding:10px;border-radius:6px;font-size:11px;color:var(--accent);border:1px solid var(--border)">
+python -m uvicorn ml.api_ml:app --reload --port 8000
+        </code>
+
+        <div style="font-size:11px;color:var(--text3);margin-top:6px">
+          Biarkan terminal tetap berjalan selama website digunakan
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px">
+        <div style="font-size:20px;margin-bottom:8px">4</div>
+
+        <div style="font-size:13px;font-weight:700;margin-bottom:6px">
+          Akses Dokumentasi API
+        </div>
+
+        <code style="display:block;background:var(--bg);padding:10px;border-radius:6px;font-size:11px;color:var(--accent);border:1px solid var(--border)">
+http://127.0.0.1:8000/docs
+        </code>
+
+        <div style="font-size:11px;color:var(--text3);margin-top:6px">
+          Gunakan Swagger UI untuk testing endpoint Machine Learning & Evaluasi SPK
+        </div>
+      </div>
+
     </div>
+  </div>
+</div>
 
     <!-- Info Model (muncul setelah server aktif) -->
     <div class="section-card" id="mlModelInfo" style="display:none">
@@ -1678,22 +1738,69 @@ let sawRankCache   = {};
 
 async function cekStatusML() {
   const el = document.getElementById('mlServerStatus');
-  el.innerHTML = '<span>⏳</span><div>Mengecek server Flask di localhost:5000...</div>';
+
+  el.innerHTML = '<span>⏳</span><div>Mengecek server FastAPI di localhost:8000...</div>';
   el.className = 'notice notice-warn';
+
   try {
     const res  = await fetch('api.php?action=ml_status');
     const data = await res.json();
+
     mlServerOnline = data.online;
+
     if (data.online) {
-      el.innerHTML = '<span>✅</span><div><strong>Flask API server aktif</strong> — Model ML siap digunakan di localhost:5000</div>';
+
+      el.innerHTML = `
+        <span>✅</span>
+        <div>
+          <strong>FastAPI server aktif</strong>
+          — Model ML siap digunakan di localhost:8000
+        </div>
+      `;
+
       el.className = 'notice notice-success';
+
       loadMLModelInfo();
+
     } else {
-      el.innerHTML = `<span>❌</span><div><strong>Server ML tidak aktif.</strong> Buka terminal → masuk folder <code style="background:rgba(0,0,0,.3);padding:1px 5px;border-radius:3px">spk_tugas8/ml</code> → jalankan: <code style="background:rgba(0,0,0,.3);padding:1px 5px;border-radius:3px">python predict_api.py</code> → klik 🔄 Cek Server lagi.</div>`;
+
+      el.innerHTML = `
+        <span>❌</span>
+        <div>
+          <strong>Server ML tidak aktif.</strong><br><br>
+
+          Buka terminal → masuk folder 
+          <code style="background:rgba(0,0,0,.3);padding:1px 5px;border-radius:3px">
+            spk_saw
+          </code>
+          
+          → jalankan:
+          
+          <code style="background:rgba(0,0,0,.3);padding:1px 5px;border-radius:3px">
+            python -m uvicorn ml.api_ml:app --reload --port 8000
+          </code>
+
+          → lalu klik 🔄 Cek Server Lagi
+        </div>
+      `;
+
       el.className = 'notice notice-warn';
     }
+
   } catch(e) {
-    el.innerHTML = '<span>⚠️</span><div>Tidak dapat terhubung. Pastikan XAMPP aktif dan Flask server berjalan.</div>';
+
+    el.innerHTML = `
+      <span>⚠️</span>
+      <div>
+        Tidak dapat terhubung.<br>
+        Pastikan:
+        <ul style="margin-top:8px">
+          <li>XAMPP Apache aktif</li>
+          <li>FastAPI server berjalan di port 8000</li>
+        </ul>
+      </div>
+    `;
+
     el.className = 'notice notice-warn';
   }
 }

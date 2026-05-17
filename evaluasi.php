@@ -199,44 +199,44 @@ class EvaluasiSPK {
         $rek = [];
 
         if ($rs >= 0.90) {
-            $rek[] = ['level' => 'baik',  'icon' => '✅', 'judul' => 'Korelasi Spearman Sangat Baik',
+            $rek[] = ['level' => 'baik',  'icon' => '', 'judul' => 'Korelasi Spearman Sangat Baik',
                 'isi' => "Nilai rs = {$rs} (≥0.90) menunjukkan SPK sangat konsisten dengan penilaian pakar. Bobot kriteria saat ini sudah tepat dan tidak perlu diubah secara signifikan."];
         } elseif ($rs >= 0.70) {
-            $rek[] = ['level' => 'sedang', 'icon' => '⚠️', 'judul' => 'Korelasi Spearman Cukup Baik',
+            $rek[] = ['level' => 'sedang', 'icon' => '', 'judul' => 'Korelasi Spearman Cukup Baik',
                 'isi' => "Nilai rs = {$rs} (0.70–0.89) menunjukkan konsistensi yang cukup. Pertimbangkan untuk mereview bobot C3 (Wawancara) dan C4 (Motivation Letter) agar lebih mencerminkan penilaian pakar."];
         } else {
-            $rek[] = ['level' => 'buruk', 'icon' => '❌', 'judul' => 'Korelasi Spearman Rendah — Bobot Perlu Dievaluasi',
+            $rek[] = ['level' => 'buruk', 'icon' => '', 'judul' => 'Korelasi Spearman Rendah — Bobot Perlu Dievaluasi',
                 'isi' => "Nilai rs = {$rs} (<0.70) menunjukkan ketidaksesuaian yang signifikan antara SPK dan pakar. Lakukan kalibrasi ulang bobot menggunakan metode AHP atau Focus Group Discussion dengan tim seleksi."];
         }
 
         if ($akurasi['top1']['pct'] == 100) {
-            $rek[] = ['level' => 'baik', 'icon' => '🎯', 'judul' => 'Akurasi Top-1 Sempurna',
+            $rek[] = ['level' => 'baik', 'icon' => '', 'judul' => 'Akurasi Top-1 Sempurna',
                 'isi' => "SPK berhasil mengidentifikasi kandidat terbaik yang sama dengan penilaian pakar. Ini mengindikasikan kriteria dan bobot sudah merepresentasikan prioritas seleksi dengan baik."];
         } else {
-            $rek[] = ['level' => 'sedang', 'icon' => '🔍', 'judul' => 'Akurasi Top-1 Perlu Diperbaiki',
+            $rek[] = ['level' => 'sedang', 'icon' => '', 'judul' => 'Akurasi Top-1 Perlu Diperbaiki',
                 'isi' => "SPK memilih kandidat berbeda dari pakar untuk posisi teratas. Pertimbangkan menaikkan bobot C1 (Rapor) atau C2 (TOEFL) sebagai penentu utama, atau tambahkan kriteria soft-skill yang lebih detail."];
         }
 
         if ($akurasi['top5']['pct'] >= 80) {
-            $rek[] = ['level' => 'baik', 'icon' => '📊', 'judul' => 'Akurasi Top-5 Tinggi',
+            $rek[] = ['level' => 'baik', 'icon' => '', 'judul' => 'Akurasi Top-5 Tinggi',
                 'isi' => "SPK mampu mengidentifikasi {$akurasi['top5']['cocok']} dari 5 kandidat terbaik versi pakar. Sistem layak digunakan sebagai alat bantu keputusan utama dalam seleksi student exchange."];
         } else {
-            $rek[] = ['level' => 'sedang', 'icon' => '📉', 'judul' => 'Akurasi Top-5 Perlu Ditingkatkan',
+            $rek[] = ['level' => 'sedang', 'icon' => '', 'judul' => 'Akurasi Top-5 Perlu Ditingkatkan',
                 'isi' => "Hanya {$akurasi['top5']['cocok']} dari 5 kandidat teratas yang cocok dengan pakar. Pertimbangkan menambah kriteria seperti 'pengalaman internasional' atau 'kemampuan adaptasi' untuk hasil lebih akurat."];
         }
 
         if ($mae <= 1.5) {
-            $rek[] = ['level' => 'baik', 'icon' => '📏', 'judul' => 'Mean Absolute Error Rendah',
+            $rek[] = ['level' => 'baik', 'icon' => '', 'judul' => 'Mean Absolute Error Rendah',
                 'isi' => "MAE = {$mae} (≤1.5) berarti rata-rata selisih peringkat SPK vs pakar sangat kecil. Sistem berfungsi sangat presisi dalam menghasilkan urutan kandidat."];
         } elseif ($mae <= 3.0) {
-            $rek[] = ['level' => 'sedang', 'icon' => '📐', 'judul' => 'MAE Sedang — Perlu Kalibrasi',
+            $rek[] = ['level' => 'sedang', 'icon' => '', 'judul' => 'MAE Sedang — Perlu Kalibrasi',
                 'isi' => "MAE = {$mae} (1.5–3.0) menunjukkan rata-rata selisih peringkat sekitar {$mae} posisi. Lakukan validasi bobot dengan pakar domain pendidikan internasional untuk mempersempit gap ini."];
         } else {
-            $rek[] = ['level' => 'buruk', 'icon' => '⚡', 'judul' => 'MAE Tinggi — Evaluasi Menyeluruh Diperlukan',
+            $rek[] = ['level' => 'buruk', 'icon' => '', 'judul' => 'MAE Tinggi — Evaluasi Menyeluruh Diperlukan',
                 'isi' => "MAE = {$mae} (>3.0) menunjukkan penyimpangan yang cukup besar. Pertimbangkan mengganti atau menambah metode (TOPSIS/AHP) dan melakukan validasi silang dengan beberapa pakar."];
         }
 
-        $rek[] = ['level' => 'info', 'icon' => '💡', 'judul' => 'Rekomendasi Pengembangan Sistem',
+        $rek[] = ['level' => 'info', 'icon' => '', 'judul' => 'Rekomendasi Pengembangan Sistem',
             'isi' => "1) Tambahkan sub-kriteria psikologis (resilience, adaptabilitas). 2) Pertimbangkan metode hybrid SAW+AHP untuk penetapan bobot lebih objektif. 3) Lakukan validasi ulang ground truth minimal setiap tahun ajaran baru. 4) Integrasikan feedback dari alumni program pertukaran sebagai data historis."];
 
         return $rek;
